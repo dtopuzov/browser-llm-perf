@@ -1,0 +1,9 @@
+{
+  "id": "e2e",
+  "description": "Diverse live-site end-to-end browser scenarios for LLM agents.",
+  "aggregation": "mean-of-scenario-medians",
+  "tasks": [
+    "wikipedia-telerik",
+    "github-login-error"
+  ]
+}

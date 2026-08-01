@@ -1,0 +1,449 @@
+{
+  "type": "agent-suite-aggregate",
+  "batchId": "codex-luna-low-e2e-2ae939d-isolated-warm-cache-3x",
+  "suite": "e2e",
+  "tasks": [
+    "wikipedia-telerik",
+    "github-login-error"
+  ],
+  "aggregation": {
+    "method": "arithmetic mean of per-scenario medians",
+    "weighting": "equal weight per scenario",
+    "missingValues": "excluded from each metric mean and reported with a metric-specific count"
+  },
+  "provenance": {
+    "consistent": true,
+    "baselineTaskId": "wikipedia-telerik",
+    "snapshots": {
+      "wikipedia-telerik": {
+        "agent": "codex",
+        "agentVersion": "codex-cli 0.146.0",
+        "model": "gpt-5.6-luna",
+        "reasoning": "low",
+        "drivers": [
+          "playwright",
+          "craftdriver"
+        ],
+        "runs": 3,
+        "headed": false,
+        "yolo": true,
+        "playwright": "1.62.0",
+        "playwrightChrome": "150.0.7871.187",
+        "craftdriver": "1.10.0",
+        "craftdriverGitSha": "2ae939da1fc5d19003f23a2da13f88bb0aaf987f",
+        "craftdriverGitDirty": false,
+        "craftdriverWorktreeDiffSha256": null,
+        "craftdriverSkillManifest": {
+          "schemaVersion": 1,
+          "craftdriverVersion": "1.10.0",
+          "files": {
+            "SKILL.md": "6e8875749d415431c852e46bf2dc889af8623d8a8566658e3efb8c8eb89c8f13",
+            "agents/openai.yaml": "a0399821a95dd066d296aee28bee9b6ccf2ac48de4597b3f6a665f8b349118a6",
+            "cheatsheet.md": "aa82c8fd8ba05aab242bd3538db54ede44ec998b5d32d917c253470002093c30",
+            "cli.md": "a52d5d75786ac15cad2fa2b32a8b6b85a3eba4b84e650507ac26ee86d238ea41",
+            "patterns.md": "3b1feded6f5e7f79d044626cb8ed37eef80bae993568de05875fedef7f1628d0",
+            "workflow.md": "352374e731964e3919d1210dd47f722d48c16123bb12b390e7f5965d5642b8d5"
+          }
+        },
+        "craftdriverChrome": "150.0.7871.187"
+      },
+      "github-login-error": {
+        "agent": "codex",
+        "agentVersion": "codex-cli 0.146.0",
+        "model": "gpt-5.6-luna",
+        "reasoning": "low",
+        "drivers": [
+          "playwright",
+          "craftdriver"
+        ],
+        "runs": 3,
+        "headed": false,
+        "yolo": true,
+        "playwright": "1.62.0",
+        "playwrightChrome": "150.0.7871.187",
+        "craftdriver": "1.10.0",
+        "craftdriverGitSha": "2ae939da1fc5d19003f23a2da13f88bb0aaf987f",
+        "craftdriverGitDirty": false,
+        "craftdriverWorktreeDiffSha256": null,
+        "craftdriverSkillManifest": {
+          "schemaVersion": 1,
+          "craftdriverVersion": "1.10.0",
+          "files": {
+            "SKILL.md": "6e8875749d415431c852e46bf2dc889af8623d8a8566658e3efb8c8eb89c8f13",
+            "agents/openai.yaml": "a0399821a95dd066d296aee28bee9b6ccf2ac48de4597b3f6a665f8b349118a6",
+            "cheatsheet.md": "aa82c8fd8ba05aab242bd3538db54ede44ec998b5d32d917c253470002093c30",
+            "cli.md": "a52d5d75786ac15cad2fa2b32a8b6b85a3eba4b84e650507ac26ee86d238ea41",
+            "patterns.md": "3b1feded6f5e7f79d044626cb8ed37eef80bae993568de05875fedef7f1628d0",
+            "workflow.md": "352374e731964e3919d1210dd47f722d48c16123bb12b390e7f5965d5642b8d5"
+          }
+        },
+        "craftdriverChrome": "150.0.7871.187"
+      }
+    },
+    "mismatches": []
+  },
+  "missingBatches": [],
+  "scenarioRows": [
+    {
+      "taskId": "wikipedia-telerik",
+      "batchId": "codex-luna-low-e2e-2ae939d-isolated-warm-cache-3x-01-wikipedia-telerik",
+      "driver": "playwright",
+      "runs": 3,
+      "successful": 3,
+      "agent": "codex",
+      "model": "gpt-5.6-luna",
+      "metrics": {
+        "wallTimeMs": 69831,
+        "agentApiDurationMs": null,
+        "costUsd": null,
+        "aiCredits": null,
+        "inputTokens": 211129,
+        "cachedInputTokens": 184064,
+        "cacheCreationInputTokens": 0,
+        "uncachedInputTokens": 37515,
+        "outputTokens": 1108,
+        "totalTokens": 212237,
+        "browserToolTurns": 7,
+        "browserCalls": 7,
+        "failedBrowserInvocations": 0,
+        "browserCommandDurationMs": 27458,
+        "browserOutputBytes": 122912
+      }
+    },
+    {
+      "taskId": "wikipedia-telerik",
+      "batchId": "codex-luna-low-e2e-2ae939d-isolated-warm-cache-3x-01-wikipedia-telerik",
+      "driver": "craftdriver",
+      "runs": 3,
+      "successful": 3,
+      "agent": "codex",
+      "model": "gpt-5.6-luna",
+      "metrics": {
+        "wallTimeMs": 49438,
+        "agentApiDurationMs": null,
+        "costUsd": null,
+        "aiCredits": null,
+        "inputTokens": 88868,
+        "cachedInputTokens": 70400,
+        "cacheCreationInputTokens": 0,
+        "uncachedInputTokens": 18468,
+        "outputTokens": 725,
+        "totalTokens": 89593,
+        "browserToolTurns": 4,
+        "browserCalls": 6,
+        "failedBrowserInvocations": 0,
+        "browserCommandDurationMs": 18638,
+        "browserOutputBytes": 5638
+      }
+    },
+    {
+      "taskId": "github-login-error",
+      "batchId": "codex-luna-low-e2e-2ae939d-isolated-warm-cache-3x-02-github-login-error",
+      "driver": "craftdriver",
+      "runs": 3,
+      "successful": 3,
+      "agent": "codex",
+      "model": "gpt-5.6-luna",
+      "metrics": {
+        "wallTimeMs": 40656,
+        "agentApiDurationMs": null,
+        "costUsd": null,
+        "aiCredits": null,
+        "inputTokens": 70810,
+        "cachedInputTokens": 40192,
+        "cacheCreationInputTokens": 0,
+        "uncachedInputTokens": 31642,
+        "outputTokens": 652,
+        "totalTokens": 71462,
+        "browserToolTurns": 3,
+        "browserCalls": 5,
+        "failedBrowserInvocations": 0,
+        "browserCommandDurationMs": 12900,
+        "browserOutputBytes": 3653
+      }
+    },
+    {
+      "taskId": "github-login-error",
+      "batchId": "codex-luna-low-e2e-2ae939d-isolated-warm-cache-3x-02-github-login-error",
+      "driver": "playwright",
+      "runs": 3,
+      "successful": 3,
+      "agent": "codex",
+      "model": "gpt-5.6-luna",
+      "metrics": {
+        "wallTimeMs": 60132,
+        "agentApiDurationMs": null,
+        "costUsd": null,
+        "aiCredits": null,
+        "inputTokens": 106246,
+        "cachedInputTokens": 71424,
+        "cacheCreationInputTokens": 0,
+        "uncachedInputTokens": 34826,
+        "outputTokens": 889,
+        "totalTokens": 107135,
+        "browserToolTurns": 5,
+        "browserCalls": 8,
+        "failedBrowserInvocations": 0,
+        "browserCommandDurationMs": 19194,
+        "browserOutputBytes": 5220
+      }
+    }
+  ],
+  "aggregates": {
+    "playwright": {
+      "scenarioCount": 2,
+      "completeScenarios": 2,
+      "runs": 6,
+      "successful": 6,
+      "successRate": 1,
+      "wallTimeMs": {
+        "count": 2,
+        "mean": 64981.5,
+        "scenarioMedians": {
+          "wikipedia-telerik": 69831,
+          "github-login-error": 60132
+        }
+      },
+      "agentApiDurationMs": {
+        "count": 0,
+        "mean": null,
+        "scenarioMedians": {}
+      },
+      "costUsd": {
+        "count": 0,
+        "mean": null,
+        "scenarioMedians": {}
+      },
+      "aiCredits": {
+        "count": 0,
+        "mean": null,
+        "scenarioMedians": {}
+      },
+      "inputTokens": {
+        "count": 2,
+        "mean": 158687.5,
+        "scenarioMedians": {
+          "wikipedia-telerik": 211129,
+          "github-login-error": 106246
+        }
+      },
+      "cachedInputTokens": {
+        "count": 2,
+        "mean": 127744,
+        "scenarioMedians": {
+          "wikipedia-telerik": 184064,
+          "github-login-error": 71424
+        }
+      },
+      "cacheCreationInputTokens": {
+        "count": 2,
+        "mean": 0,
+        "scenarioMedians": {
+          "wikipedia-telerik": 0,
+          "github-login-error": 0
+        }
+      },
+      "uncachedInputTokens": {
+        "count": 2,
+        "mean": 36170.5,
+        "scenarioMedians": {
+          "wikipedia-telerik": 37515,
+          "github-login-error": 34826
+        }
+      },
+      "outputTokens": {
+        "count": 2,
+        "mean": 998.5,
+        "scenarioMedians": {
+          "wikipedia-telerik": 1108,
+          "github-login-error": 889
+        }
+      },
+      "totalTokens": {
+        "count": 2,
+        "mean": 159686,
+        "scenarioMedians": {
+          "wikipedia-telerik": 212237,
+          "github-login-error": 107135
+        }
+      },
+      "browserToolTurns": {
+        "count": 2,
+        "mean": 6,
+        "scenarioMedians": {
+          "wikipedia-telerik": 7,
+          "github-login-error": 5
+        }
+      },
+      "browserCalls": {
+        "count": 2,
+        "mean": 7.5,
+        "scenarioMedians": {
+          "wikipedia-telerik": 7,
+          "github-login-error": 8
+        }
+      },
+      "failedBrowserInvocations": {
+        "count": 2,
+        "mean": 0,
+        "scenarioMedians": {
+          "wikipedia-telerik": 0,
+          "github-login-error": 0
+        }
+      },
+      "browserCommandDurationMs": {
+        "count": 2,
+        "mean": 23326,
+        "scenarioMedians": {
+          "wikipedia-telerik": 27458,
+          "github-login-error": 19194
+        }
+      },
+      "browserOutputBytes": {
+        "count": 2,
+        "mean": 64066,
+        "scenarioMedians": {
+          "wikipedia-telerik": 122912,
+          "github-login-error": 5220
+        }
+      }
+    },
+    "craftdriver": {
+      "scenarioCount": 2,
+      "completeScenarios": 2,
+      "runs": 6,
+      "successful": 6,
+      "successRate": 1,
+      "wallTimeMs": {
+        "count": 2,
+        "mean": 45047,
+        "scenarioMedians": {
+          "wikipedia-telerik": 49438,
+          "github-login-error": 40656
+        }
+      },
+      "agentApiDurationMs": {
+        "count": 0,
+        "mean": null,
+        "scenarioMedians": {}
+      },
+      "costUsd": {
+        "count": 0,
+        "mean": null,
+        "scenarioMedians": {}
+      },
+      "aiCredits": {
+        "count": 0,
+        "mean": null,
+        "scenarioMedians": {}
+      },
+      "inputTokens": {
+        "count": 2,
+        "mean": 79839,
+        "scenarioMedians": {
+          "wikipedia-telerik": 88868,
+          "github-login-error": 70810
+        }
+      },
+      "cachedInputTokens": {
+        "count": 2,
+        "mean": 55296,
+        "scenarioMedians": {
+          "wikipedia-telerik": 70400,
+          "github-login-error": 40192
+        }
+      },
+      "cacheCreationInputTokens": {
+        "count": 2,
+        "mean": 0,
+        "scenarioMedians": {
+          "wikipedia-telerik": 0,
+          "github-login-error": 0
+        }
+      },
+      "uncachedInputTokens": {
+        "count": 2,
+        "mean": 25055,
+        "scenarioMedians": {
+          "wikipedia-telerik": 18468,
+          "github-login-error": 31642
+        }
+      },
+      "outputTokens": {
+        "count": 2,
+        "mean": 688.5,
+        "scenarioMedians": {
+          "wikipedia-telerik": 725,
+          "github-login-error": 652
+        }
+      },
+      "totalTokens": {
+        "count": 2,
+        "mean": 80527.5,
+        "scenarioMedians": {
+          "wikipedia-telerik": 89593,
+          "github-login-error": 71462
+        }
+      },
+      "browserToolTurns": {
+        "count": 2,
+        "mean": 3.5,
+        "scenarioMedians": {
+          "wikipedia-telerik": 4,
+          "github-login-error": 3
+        }
+      },
+      "browserCalls": {
+        "count": 2,
+        "mean": 5.5,
+        "scenarioMedians": {
+          "wikipedia-telerik": 6,
+          "github-login-error": 5
+        }
+      },
+      "failedBrowserInvocations": {
+        "count": 2,
+        "mean": 0,
+        "scenarioMedians": {
+          "wikipedia-telerik": 0,
+          "github-login-error": 0
+        }
+      },
+      "browserCommandDurationMs": {
+        "count": 2,
+        "mean": 15769,
+        "scenarioMedians": {
+          "wikipedia-telerik": 18638,
+          "github-login-error": 12900
+        }
+      },
+      "browserOutputBytes": {
+        "count": 2,
+        "mean": 4645.5,
+        "scenarioMedians": {
+          "wikipedia-telerik": 5638,
+          "github-login-error": 3653
+        }
+      }
+    }
+  },
+  "relativeToPlaywright": {
+    "craftdriver": {
+      "wallTimeMs": -30.677192739472005,
+      "agentApiDurationMs": null,
+      "costUsd": null,
+      "aiCredits": null,
+      "inputTokens": -49.687908625443086,
+      "cachedInputTokens": -56.71342685370742,
+      "cacheCreationInputTokens": null,
+      "uncachedInputTokens": -30.73084419623726,
+      "outputTokens": -31.04656985478217,
+      "totalTokens": -49.57134626704909,
+      "browserToolTurns": -41.666666666666664,
+      "browserCalls": -26.66666666666667,
+      "failedBrowserInvocations": null,
+      "browserCommandDurationMs": -32.39732487353169,
+      "browserOutputBytes": -92.74888396341274
+    }
+  }
+}

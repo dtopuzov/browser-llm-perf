@@ -1,0 +1,11 @@
+{
+  "id": "local-delayed-status",
+  "description": "Deterministic click, auto-wait, and asynchronous UI update flow.",
+  "fixture": "delayed-status",
+  "promptTemplate": "Use the {{DRIVER_SKILL}} skill and {{DRIVER_LABEL}} CLI for every browser interaction. Open a fresh {{BROWSER_MODE}} Chrome session, navigate to {{BASE_URL}}/, click the visible Check deployment button, wait for the status update to become visible, and return the final status text and current URL as message and url. Close the browser session before answering.",
+  "expected": {
+    "message": "Deployment is healthy",
+    "urlPath": "/"
+  },
+  "outputSchema": "schemas/message-result.schema.json"
+}

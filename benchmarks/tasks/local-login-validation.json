@@ -1,0 +1,11 @@
+{
+  "id": "local-login-validation",
+  "description": "Deterministic form interaction and validation flow.",
+  "fixture": "login",
+  "promptTemplate": "Use the {{DRIVER_SKILL}} skill and {{DRIVER_LABEL}} CLI for every browser interaction. Open a fresh {{BROWSER_MODE}} Chrome session, navigate to {{BASE_URL}}/, fill the visible Email field with invalid@example.test and Password with wrong-password, submit the form, and return the visible validation message and current URL as message and url. Close the browser session before answering.",
+  "expected": {
+    "message": "Invalid email or password",
+    "urlPath": "/"
+  },
+  "outputSchema": "schemas/message-result.schema.json"
+}

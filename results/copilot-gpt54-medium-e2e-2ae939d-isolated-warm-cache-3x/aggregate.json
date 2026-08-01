@@ -1,0 +1,431 @@
+{
+  "type": "agent-suite-aggregate",
+  "batchId": "copilot-gpt54-medium-e2e-2ae939d-isolated-warm-cache-3x",
+  "suite": "e2e",
+  "tasks": [
+    "wikipedia-telerik",
+    "github-login-error"
+  ],
+  "aggregation": {
+    "method": "arithmetic mean of per-scenario medians",
+    "weighting": "equal weight per scenario",
+    "missingValues": "excluded from each metric mean and reported with a metric-specific count"
+  },
+  "provenance": {
+    "consistent": true,
+    "baselineTaskId": "wikipedia-telerik",
+    "snapshots": {
+      "wikipedia-telerik": {
+        "agent": "copilot",
+        "agentVersion": "GitHub Copilot CLI 1.0.76.\nRun 'copilot update' to check for updates.",
+        "model": "gpt-5.4",
+        "reasoning": "medium",
+        "drivers": [
+          "playwright",
+          "craftdriver"
+        ],
+        "runs": 3,
+        "headed": false,
+        "yolo": true,
+        "playwright": "1.62.0",
+        "playwrightChrome": "150.0.7871.187",
+        "craftdriver": "1.10.0",
+        "craftdriverGitSha": "2ae939da1fc5d19003f23a2da13f88bb0aaf987f",
+        "craftdriverGitDirty": false,
+        "craftdriverWorktreeDiffSha256": null,
+        "craftdriverSkillManifest": {
+          "schemaVersion": 1,
+          "craftdriverVersion": "1.10.0",
+          "files": {
+            "SKILL.md": "6e8875749d415431c852e46bf2dc889af8623d8a8566658e3efb8c8eb89c8f13",
+            "agents/openai.yaml": "a0399821a95dd066d296aee28bee9b6ccf2ac48de4597b3f6a665f8b349118a6",
+            "cheatsheet.md": "aa82c8fd8ba05aab242bd3538db54ede44ec998b5d32d917c253470002093c30",
+            "cli.md": "a52d5d75786ac15cad2fa2b32a8b6b85a3eba4b84e650507ac26ee86d238ea41",
+            "patterns.md": "3b1feded6f5e7f79d044626cb8ed37eef80bae993568de05875fedef7f1628d0",
+            "workflow.md": "352374e731964e3919d1210dd47f722d48c16123bb12b390e7f5965d5642b8d5"
+          }
+        },
+        "craftdriverChrome": "150.0.7871.187"
+      },
+      "github-login-error": {
+        "agent": "copilot",
+        "agentVersion": "GitHub Copilot CLI 1.0.76.\nRun 'copilot update' to check for updates.",
+        "model": "gpt-5.4",
+        "reasoning": "medium",
+        "drivers": [
+          "playwright",
+          "craftdriver"
+        ],
+        "runs": 3,
+        "headed": false,
+        "yolo": true,
+        "playwright": "1.62.0",
+        "playwrightChrome": "150.0.7871.187",
+        "craftdriver": "1.10.0",
+        "craftdriverGitSha": "2ae939da1fc5d19003f23a2da13f88bb0aaf987f",
+        "craftdriverGitDirty": false,
+        "craftdriverWorktreeDiffSha256": null,
+        "craftdriverSkillManifest": {
+          "schemaVersion": 1,
+          "craftdriverVersion": "1.10.0",
+          "files": {
+            "SKILL.md": "6e8875749d415431c852e46bf2dc889af8623d8a8566658e3efb8c8eb89c8f13",
+            "agents/openai.yaml": "a0399821a95dd066d296aee28bee9b6ccf2ac48de4597b3f6a665f8b349118a6",
+            "cheatsheet.md": "aa82c8fd8ba05aab242bd3538db54ede44ec998b5d32d917c253470002093c30",
+            "cli.md": "a52d5d75786ac15cad2fa2b32a8b6b85a3eba4b84e650507ac26ee86d238ea41",
+            "patterns.md": "3b1feded6f5e7f79d044626cb8ed37eef80bae993568de05875fedef7f1628d0",
+            "workflow.md": "352374e731964e3919d1210dd47f722d48c16123bb12b390e7f5965d5642b8d5"
+          }
+        },
+        "craftdriverChrome": "150.0.7871.187"
+      }
+    },
+    "mismatches": []
+  },
+  "missingBatches": [],
+  "scenarioRows": [
+    {
+      "taskId": "wikipedia-telerik",
+      "batchId": "copilot-gpt54-medium-e2e-2ae939d-isolated-warm-cache-3x-01-wikipedia-telerik",
+      "driver": "playwright",
+      "runs": 3,
+      "successful": 3,
+      "agent": "copilot",
+      "model": "gpt-5.4",
+      "metrics": {
+        "wallTimeMs": 57488,
+        "agentApiDurationMs": 20702,
+        "costUsd": null,
+        "aiCredits": 12.9801,
+        "inputTokens": null,
+        "cachedInputTokens": null,
+        "cacheCreationInputTokens": null,
+        "uncachedInputTokens": null,
+        "outputTokens": 2086,
+        "totalTokens": null,
+        "browserToolTurns": 3,
+        "browserCalls": 8,
+        "failedBrowserInvocations": 0,
+        "browserCommandDurationMs": 25514,
+        "browserOutputBytes": 1488
+      }
+    },
+    {
+      "taskId": "wikipedia-telerik",
+      "batchId": "copilot-gpt54-medium-e2e-2ae939d-isolated-warm-cache-3x-01-wikipedia-telerik",
+      "driver": "craftdriver",
+      "runs": 3,
+      "successful": 3,
+      "agent": "copilot",
+      "model": "gpt-5.4",
+      "metrics": {
+        "wallTimeMs": 42166,
+        "agentApiDurationMs": 17486,
+        "costUsd": null,
+        "aiCredits": 11.29275,
+        "inputTokens": null,
+        "cachedInputTokens": null,
+        "cacheCreationInputTokens": null,
+        "uncachedInputTokens": null,
+        "outputTokens": 1465,
+        "totalTokens": null,
+        "browserToolTurns": 5,
+        "browserCalls": 6,
+        "failedBrowserInvocations": 0,
+        "browserCommandDurationMs": 15551,
+        "browserOutputBytes": 5835
+      }
+    },
+    {
+      "taskId": "github-login-error",
+      "batchId": "copilot-gpt54-medium-e2e-2ae939d-isolated-warm-cache-3x-02-github-login-error",
+      "driver": "craftdriver",
+      "runs": 3,
+      "successful": 3,
+      "agent": "copilot",
+      "model": "gpt-5.4",
+      "metrics": {
+        "wallTimeMs": 47026,
+        "agentApiDurationMs": 17941,
+        "costUsd": null,
+        "aiCredits": 10.6947,
+        "inputTokens": null,
+        "cachedInputTokens": null,
+        "cacheCreationInputTokens": null,
+        "uncachedInputTokens": null,
+        "outputTokens": 1338,
+        "totalTokens": null,
+        "browserToolTurns": 3,
+        "browserCalls": 5,
+        "failedBrowserInvocations": 0,
+        "browserCommandDurationMs": 16733,
+        "browserOutputBytes": 3596
+      }
+    },
+    {
+      "taskId": "github-login-error",
+      "batchId": "copilot-gpt54-medium-e2e-2ae939d-isolated-warm-cache-3x-02-github-login-error",
+      "driver": "playwright",
+      "runs": 3,
+      "successful": 3,
+      "agent": "copilot",
+      "model": "gpt-5.4",
+      "metrics": {
+        "wallTimeMs": 71247,
+        "agentApiDurationMs": 22129,
+        "costUsd": null,
+        "aiCredits": 12.8693,
+        "inputTokens": null,
+        "cachedInputTokens": null,
+        "cacheCreationInputTokens": null,
+        "uncachedInputTokens": null,
+        "outputTokens": 2066,
+        "totalTokens": null,
+        "browserToolTurns": 2,
+        "browserCalls": 13,
+        "failedBrowserInvocations": 1,
+        "browserCommandDurationMs": 37233,
+        "browserOutputBytes": 6995
+      }
+    }
+  ],
+  "aggregates": {
+    "playwright": {
+      "scenarioCount": 2,
+      "completeScenarios": 2,
+      "runs": 6,
+      "successful": 6,
+      "successRate": 1,
+      "wallTimeMs": {
+        "count": 2,
+        "mean": 64367.5,
+        "scenarioMedians": {
+          "wikipedia-telerik": 57488,
+          "github-login-error": 71247
+        }
+      },
+      "agentApiDurationMs": {
+        "count": 2,
+        "mean": 21415.5,
+        "scenarioMedians": {
+          "wikipedia-telerik": 20702,
+          "github-login-error": 22129
+        }
+      },
+      "costUsd": {
+        "count": 0,
+        "mean": null,
+        "scenarioMedians": {}
+      },
+      "aiCredits": {
+        "count": 2,
+        "mean": 12.924700000000001,
+        "scenarioMedians": {
+          "wikipedia-telerik": 12.9801,
+          "github-login-error": 12.8693
+        }
+      },
+      "inputTokens": {
+        "count": 0,
+        "mean": null,
+        "scenarioMedians": {}
+      },
+      "cachedInputTokens": {
+        "count": 0,
+        "mean": null,
+        "scenarioMedians": {}
+      },
+      "cacheCreationInputTokens": {
+        "count": 0,
+        "mean": null,
+        "scenarioMedians": {}
+      },
+      "uncachedInputTokens": {
+        "count": 0,
+        "mean": null,
+        "scenarioMedians": {}
+      },
+      "outputTokens": {
+        "count": 2,
+        "mean": 2076,
+        "scenarioMedians": {
+          "wikipedia-telerik": 2086,
+          "github-login-error": 2066
+        }
+      },
+      "totalTokens": {
+        "count": 0,
+        "mean": null,
+        "scenarioMedians": {}
+      },
+      "browserToolTurns": {
+        "count": 2,
+        "mean": 2.5,
+        "scenarioMedians": {
+          "wikipedia-telerik": 3,
+          "github-login-error": 2
+        }
+      },
+      "browserCalls": {
+        "count": 2,
+        "mean": 10.5,
+        "scenarioMedians": {
+          "wikipedia-telerik": 8,
+          "github-login-error": 13
+        }
+      },
+      "failedBrowserInvocations": {
+        "count": 2,
+        "mean": 0.5,
+        "scenarioMedians": {
+          "wikipedia-telerik": 0,
+          "github-login-error": 1
+        }
+      },
+      "browserCommandDurationMs": {
+        "count": 2,
+        "mean": 31373.5,
+        "scenarioMedians": {
+          "wikipedia-telerik": 25514,
+          "github-login-error": 37233
+        }
+      },
+      "browserOutputBytes": {
+        "count": 2,
+        "mean": 4241.5,
+        "scenarioMedians": {
+          "wikipedia-telerik": 1488,
+          "github-login-error": 6995
+        }
+      }
+    },
+    "craftdriver": {
+      "scenarioCount": 2,
+      "completeScenarios": 2,
+      "runs": 6,
+      "successful": 6,
+      "successRate": 1,
+      "wallTimeMs": {
+        "count": 2,
+        "mean": 44596,
+        "scenarioMedians": {
+          "wikipedia-telerik": 42166,
+          "github-login-error": 47026
+        }
+      },
+      "agentApiDurationMs": {
+        "count": 2,
+        "mean": 17713.5,
+        "scenarioMedians": {
+          "wikipedia-telerik": 17486,
+          "github-login-error": 17941
+        }
+      },
+      "costUsd": {
+        "count": 0,
+        "mean": null,
+        "scenarioMedians": {}
+      },
+      "aiCredits": {
+        "count": 2,
+        "mean": 10.993725,
+        "scenarioMedians": {
+          "wikipedia-telerik": 11.29275,
+          "github-login-error": 10.6947
+        }
+      },
+      "inputTokens": {
+        "count": 0,
+        "mean": null,
+        "scenarioMedians": {}
+      },
+      "cachedInputTokens": {
+        "count": 0,
+        "mean": null,
+        "scenarioMedians": {}
+      },
+      "cacheCreationInputTokens": {
+        "count": 0,
+        "mean": null,
+        "scenarioMedians": {}
+      },
+      "uncachedInputTokens": {
+        "count": 0,
+        "mean": null,
+        "scenarioMedians": {}
+      },
+      "outputTokens": {
+        "count": 2,
+        "mean": 1401.5,
+        "scenarioMedians": {
+          "wikipedia-telerik": 1465,
+          "github-login-error": 1338
+        }
+      },
+      "totalTokens": {
+        "count": 0,
+        "mean": null,
+        "scenarioMedians": {}
+      },
+      "browserToolTurns": {
+        "count": 2,
+        "mean": 4,
+        "scenarioMedians": {
+          "wikipedia-telerik": 5,
+          "github-login-error": 3
+        }
+      },
+      "browserCalls": {
+        "count": 2,
+        "mean": 5.5,
+        "scenarioMedians": {
+          "wikipedia-telerik": 6,
+          "github-login-error": 5
+        }
+      },
+      "failedBrowserInvocations": {
+        "count": 2,
+        "mean": 0,
+        "scenarioMedians": {
+          "wikipedia-telerik": 0,
+          "github-login-error": 0
+        }
+      },
+      "browserCommandDurationMs": {
+        "count": 2,
+        "mean": 16142,
+        "scenarioMedians": {
+          "wikipedia-telerik": 15551,
+          "github-login-error": 16733
+        }
+      },
+      "browserOutputBytes": {
+        "count": 2,
+        "mean": 4715.5,
+        "scenarioMedians": {
+          "wikipedia-telerik": 5835,
+          "github-login-error": 3596
+        }
+      }
+    }
+  },
+  "relativeToPlaywright": {
+    "craftdriver": {
+      "wallTimeMs": -30.716588340389173,
+      "agentApiDurationMs": -17.286544792323323,
+      "costUsd": null,
+      "aiCredits": -14.940192035405087,
+      "inputTokens": null,
+      "cachedInputTokens": null,
+      "cacheCreationInputTokens": null,
+      "uncachedInputTokens": null,
+      "outputTokens": -32.49036608863199,
+      "totalTokens": null,
+      "browserToolTurns": 60.00000000000001,
+      "browserCalls": -47.61904761904761,
+      "failedBrowserInvocations": -100,
+      "browserCommandDurationMs": -48.54893461041962,
+      "browserOutputBytes": 11.175291759990568
+    }
+  }
+}

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Account sign in</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; margin: 3rem auto; max-width: 30rem; padding: 0 1rem; }
+      label, input, button { display: block; width: 100%; box-sizing: border-box; }
+      input, button { margin: 0.35rem 0 1rem; padding: 0.7rem; }
+      #error { color: #a40000; font-weight: 600; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Sign in</h1>
+      <form id="login-form">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" autocomplete="off" />
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" />
+        <button type="submit">Sign in</button>
+      </form>
+      <p id="error" role="alert" hidden>Invalid email or password</p>
+    </main>
+    <script>
+      const form = document.querySelector('#login-form');
+      const error = document.querySelector('#error');
+      form.addEventListener('submit', event => {
+        event.preventDefault();
+        error.hidden = false;
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,7 @@
+runId,agent,driver,successful,wallTimeMs,agentApiDurationMs,agentReportedSessionDurationMs,aiCredits,aiCreditNanoUnits,premiumRequests,costUsd,inputTokens,cachedInputTokens,cacheCreationInputTokens,uncachedInputTokens,outputTokens,reasoningOutputTokens,totalTokens,agentToolTurns,browserToolTurns,browserCalls,browserCommandDurationMs,browserOutputBytes,failedCommands
+001-codex-craftdriver,codex,craftdriver,true,54316,,,,,,,85067,40192,0,44875,896,125,85963,4,3,5,25961,3589,0
+001-codex-playwright,codex,playwright,true,56218,,,,,,,106197,86528,0,19669,870,117,107067,6,5,8,20512,5220,0
+002-codex-playwright,codex,playwright,true,60491,,,,,,,106246,70400,0,35846,889,115,107135,6,5,8,19050,5220,0
+002-codex-craftdriver,codex,craftdriver,true,40656,,,,,,,70810,39168,0,31642,652,76,71462,4,3,5,12900,3653,0
+003-codex-craftdriver,codex,craftdriver,true,36079,,,,,,,70421,62208,0,8213,636,55,71057,4,3,5,12177,3653,0
+003-codex-playwright,codex,playwright,true,60132,,,,,,,106250,71424,0,34826,890,122,107140,6,5,8,19194,5220,0

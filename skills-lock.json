@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "vibe-check": {
+      "source": "VibiumDev/vibium",
+      "sourceType": "github",
+      "skillPath": "skills/vibe-check/SKILL.md",
+      "computedHash": "715b246f67ef16f004db224285fce7cb248a28a0c220afaae86ab2b65d3b099b"
+    }
+  }
+}

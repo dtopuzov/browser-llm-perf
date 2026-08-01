@@ -1,0 +1,10 @@
+{
+  "id": "wikipedia-telerik",
+  "description": "Live-site realism check based on the original example prompt.",
+  "promptTemplate": "Use the {{DRIVER_SKILL}} skill and {{DRIVER_LABEL}} CLI for every browser interaction. Open a fresh {{BROWSER_MODE}} Chrome session, navigate to https://en.wikipedia.org/wiki/Main_Page, use the visible Search Wikipedia field to search for Telerik, and return the destination article heading and canonical URL as title and url. Do not navigate directly to the Telerik article. Immediately before closing, capture the final visible page as final-screenshot.png using {{DRIVER_LABEL}}. Close the browser session before answering.",
+  "expected": {
+    "title": "Telerik",
+    "url": "https://en.wikipedia.org/wiki/Telerik"
+  },
+  "outputSchema": "schemas/browser-result.schema.json"
+}

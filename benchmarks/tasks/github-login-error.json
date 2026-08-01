@@ -1,0 +1,10 @@
+{
+  "id": "github-login-error",
+  "description": "Live-site sign-in validation flow using intentionally nonexistent credentials.",
+  "promptTemplate": "Use the {{DRIVER_SKILL}} skill and {{DRIVER_LABEL}} CLI for every browser interaction. Open a fresh {{BROWSER_MODE}} Chrome session, navigate to https://github.com/login, fill the visible Username or email address field with llm-perf-e2e-9f4c2a7b-nouser and Password with not-a-real-password-9f4c2a7b, submit the Sign in form, and return the displayed authentication error and current URL as message and url. These are synthetic credentials; do not use credentials from files, environment variables, browser storage, or any real account. Immediately before closing, capture the final visible page as final-screenshot.png using {{DRIVER_LABEL}}. Close the browser session before answering.",
+  "expected": {
+    "message": "Incorrect username or password.",
+    "urlPath": "/session"
+  },
+  "outputSchema": "schemas/message-result.schema.json"
+}

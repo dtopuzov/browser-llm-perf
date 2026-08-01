@@ -1,0 +1,363 @@
+{
+  "batchId": "codex-luna-low-e2e-2ae939d-isolated-warm-cache-3x-01-wikipedia-telerik",
+  "task": "wikipedia-telerik",
+  "aggregates": {
+    "playwright": {
+      "runs": 3,
+      "successful": 3,
+      "successRate": 1,
+      "wallTimeMs": {
+        "count": 3,
+        "mean": 65147.333333333336,
+        "median": 69831,
+        "p95": 73104,
+        "min": 52507,
+        "max": 73104
+      },
+      "firstBrowserCommandMs": {
+        "count": 3,
+        "mean": 14849,
+        "median": 14341,
+        "p95": 16014,
+        "min": 14192,
+        "max": 16014
+      },
+      "browserCommandDurationMs": {
+        "count": 3,
+        "mean": 23722.666666666668,
+        "median": 27458,
+        "p95": 30438,
+        "min": 13272,
+        "max": 30438
+      },
+      "agentApiDurationMs": {
+        "count": 0,
+        "mean": null,
+        "median": null,
+        "p95": null,
+        "min": null,
+        "max": null
+      },
+      "inputTokens": {
+        "count": 3,
+        "mean": 182160,
+        "median": 211129,
+        "p95": 226699,
+        "min": 108652,
+        "max": 226699
+      },
+      "cachedInputTokens": {
+        "count": 3,
+        "mean": 144896,
+        "median": 184064,
+        "p95": 189184,
+        "min": 61440,
+        "max": 189184
+      },
+      "cacheCreationInputTokens": {
+        "count": 3,
+        "mean": 0,
+        "median": 0,
+        "p95": 0,
+        "min": 0,
+        "max": 0
+      },
+      "uncachedInputTokens": {
+        "count": 3,
+        "mean": 37264,
+        "median": 37515,
+        "p95": 47212,
+        "min": 27065,
+        "max": 47212
+      },
+      "outputTokens": {
+        "count": 3,
+        "mean": 1023,
+        "median": 1108,
+        "p95": 1149,
+        "min": 812,
+        "max": 1149
+      },
+      "reasoningOutputTokens": {
+        "count": 3,
+        "mean": 162.33333333333334,
+        "median": 153,
+        "p95": 194,
+        "min": 140,
+        "max": 194
+      },
+      "totalTokens": {
+        "count": 3,
+        "mean": 183183,
+        "median": 212237,
+        "p95": 227848,
+        "min": 109464,
+        "max": 227848
+      },
+      "aiCredits": {
+        "count": 0,
+        "mean": null,
+        "median": null,
+        "p95": null,
+        "min": null,
+        "max": null
+      },
+      "premiumRequests": {
+        "count": 0,
+        "mean": null,
+        "median": null,
+        "p95": null,
+        "min": null,
+        "max": null
+      },
+      "costUsd": {
+        "count": 0,
+        "mean": null,
+        "median": null,
+        "p95": null,
+        "min": null,
+        "max": null
+      },
+      "agentToolTurns": {
+        "count": 3,
+        "mean": 7,
+        "median": 8,
+        "p95": 9,
+        "min": 4,
+        "max": 9
+      },
+      "browserToolTurns": {
+        "count": 3,
+        "mean": 6,
+        "median": 7,
+        "p95": 8,
+        "min": 3,
+        "max": 8
+      },
+      "browserCalls": {
+        "count": 3,
+        "mean": 6,
+        "median": 7,
+        "p95": 8,
+        "min": 3,
+        "max": 8
+      },
+      "failedBrowserInvocations": {
+        "count": 3,
+        "mean": 0,
+        "median": 0,
+        "p95": 0,
+        "min": 0,
+        "max": 0
+      },
+      "failedCommands": {
+        "count": 3,
+        "mean": 0,
+        "median": 0,
+        "p95": 0,
+        "min": 0,
+        "max": 0
+      },
+      "browserOutputBytes": {
+        "count": 3,
+        "mean": 102858,
+        "median": 122912,
+        "p95": 123036,
+        "min": 62626,
+        "max": 123036
+      }
+    },
+    "craftdriver": {
+      "runs": 3,
+      "successful": 3,
+      "successRate": 1,
+      "wallTimeMs": {
+        "count": 3,
+        "mean": 50032.666666666664,
+        "median": 49438,
+        "p95": 57801,
+        "min": 42859,
+        "max": 57801
+      },
+      "firstBrowserCommandMs": {
+        "count": 3,
+        "mean": 13684.666666666666,
+        "median": 13883,
+        "p95": 14365,
+        "min": 12806,
+        "max": 14365
+      },
+      "browserCommandDurationMs": {
+        "count": 3,
+        "mean": 22777,
+        "median": 18638,
+        "p95": 34814,
+        "min": 14879,
+        "max": 34814
+      },
+      "agentApiDurationMs": {
+        "count": 0,
+        "mean": null,
+        "median": null,
+        "p95": null,
+        "min": null,
+        "max": null
+      },
+      "inputTokens": {
+        "count": 3,
+        "mean": 89146.66666666667,
+        "median": 88868,
+        "p95": 89753,
+        "min": 88819,
+        "max": 89753
+      },
+      "cachedInputTokens": {
+        "count": 3,
+        "mean": 70400,
+        "median": 70400,
+        "p95": 70400,
+        "min": 70400,
+        "max": 70400
+      },
+      "cacheCreationInputTokens": {
+        "count": 3,
+        "mean": 0,
+        "median": 0,
+        "p95": 0,
+        "min": 0,
+        "max": 0
+      },
+      "uncachedInputTokens": {
+        "count": 3,
+        "mean": 18746.666666666668,
+        "median": 18468,
+        "p95": 19353,
+        "min": 18419,
+        "max": 19353
+      },
+      "outputTokens": {
+        "count": 3,
+        "mean": 817.6666666666666,
+        "median": 725,
+        "p95": 1037,
+        "min": 691,
+        "max": 1037
+      },
+      "reasoningOutputTokens": {
+        "count": 3,
+        "mean": 121,
+        "median": 112,
+        "p95": 176,
+        "min": 75,
+        "max": 176
+      },
+      "totalTokens": {
+        "count": 3,
+        "mean": 89964.33333333333,
+        "median": 89593,
+        "p95": 90790,
+        "min": 89510,
+        "max": 90790
+      },
+      "aiCredits": {
+        "count": 0,
+        "mean": null,
+        "median": null,
+        "p95": null,
+        "min": null,
+        "max": null
+      },
+      "premiumRequests": {
+        "count": 0,
+        "mean": null,
+        "median": null,
+        "p95": null,
+        "min": null,
+        "max": null
+      },
+      "costUsd": {
+        "count": 0,
+        "mean": null,
+        "median": null,
+        "p95": null,
+        "min": null,
+        "max": null
+      },
+      "agentToolTurns": {
+        "count": 3,
+        "mean": 5.333333333333333,
+        "median": 5,
+        "p95": 7,
+        "min": 4,
+        "max": 7
+      },
+      "browserToolTurns": {
+        "count": 3,
+        "mean": 4.333333333333333,
+        "median": 4,
+        "p95": 6,
+        "min": 3,
+        "max": 6
+      },
+      "browserCalls": {
+        "count": 3,
+        "mean": 6,
+        "median": 6,
+        "p95": 6,
+        "min": 6,
+        "max": 6
+      },
+      "failedBrowserInvocations": {
+        "count": 3,
+        "mean": 0,
+        "median": 0,
+        "p95": 0,
+        "min": 0,
+        "max": 0
+      },
+      "failedCommands": {
+        "count": 3,
+        "mean": 0,
+        "median": 0,
+        "p95": 0,
+        "min": 0,
+        "max": 0
+      },
+      "browserOutputBytes": {
+        "count": 3,
+        "mean": 5638,
+        "median": 5638,
+        "p95": 5638,
+        "min": 5638,
+        "max": 5638
+      }
+    }
+  },
+  "relativeToPlaywright": {
+    "craftdriver": {
+      "wallTimeMedianPercent": -29.203362403517062,
+      "inputTokensMedianPercent": -57.9081983053015,
+      "uncachedInputTokensMedianPercent": -50.77169132347061,
+      "outputTokensMedianPercent": -34.56678700361011,
+      "totalTokensMedianPercent": -57.786342626403496,
+      "aiCreditsMedianPercent": null,
+      "costUsdMedianPercent": null,
+      "browserCommandDurationMedianPercent": -32.121786000437034,
+      "agentApiDurationMedianPercent": null,
+      "browserOutputBytesMedianPercent": -95.412978391044
+    }
+  },
+  "craftdriverRelativeToPlaywright": {
+    "wallTimeMedianPercent": -29.203362403517062,
+    "inputTokensMedianPercent": -57.9081983053015,
+    "uncachedInputTokensMedianPercent": -50.77169132347061,
+    "outputTokensMedianPercent": -34.56678700361011,
+    "totalTokensMedianPercent": -57.786342626403496,
+    "aiCreditsMedianPercent": null,
+    "costUsdMedianPercent": null,
+    "browserCommandDurationMedianPercent": -32.121786000437034,
+    "agentApiDurationMedianPercent": null,
+    "browserOutputBytesMedianPercent": -95.412978391044
+  },
+  "vibiumRelativeToPlaywright": null
+}

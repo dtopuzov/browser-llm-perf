@@ -1,0 +1,59 @@
+# Dependencies and build/test output
+node_modules/
+coverage/
+dist/
+test-results/
+playwright-report/
+blob-report/
+
+# Local secrets and editor/OS state
+.env
+.env.*
+!.env.example
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.tmp
+*.log
+
+# Agent/browser state generated in the repository root
+/.agents/
+/.claude/
+/.codex/
+/.copilot/
+/.craftdriver/
+/.benchmark-output-schema.json
+/.playwright/*
+!/.playwright/cli.config.json
+/final-screenshot.png
+
+# Raw benchmark sessions stay local: they can contain large event streams,
+# screenshots, browser profiles, temporary paths, and copied workspaces.
+results/**
+
+# Publish only the curated summaries for the current batch. Superseded batches
+# are removed from source control; their raw evidence stays local.
+!results/copilot-gpt54-medium-e2e-2ae939d-isolated-warm-cache-3x*/
+results/copilot-gpt54-medium-e2e-2ae939d-isolated-warm-cache-3x*/*
+!results/copilot-gpt54-medium-e2e-2ae939d-isolated-warm-cache-3x*/manifest.json
+!results/copilot-gpt54-medium-e2e-2ae939d-isolated-warm-cache-3x*/report.md
+!results/copilot-gpt54-medium-e2e-2ae939d-isolated-warm-cache-3x*/aggregate.json
+!results/copilot-gpt54-medium-e2e-2ae939d-isolated-warm-cache-3x*/runs.csv
+!results/copilot-gpt54-medium-e2e-2ae939d-isolated-warm-cache-3x*/scenarios.csv
+
+!results/codex-luna-low-e2e-2ae939d-isolated-warm-cache-3x*/
+results/codex-luna-low-e2e-2ae939d-isolated-warm-cache-3x*/*
+!results/codex-luna-low-e2e-2ae939d-isolated-warm-cache-3x*/manifest.json
+!results/codex-luna-low-e2e-2ae939d-isolated-warm-cache-3x*/report.md
+!results/codex-luna-low-e2e-2ae939d-isolated-warm-cache-3x*/aggregate.json
+!results/codex-luna-low-e2e-2ae939d-isolated-warm-cache-3x*/runs.csv
+!results/codex-luna-low-e2e-2ae939d-isolated-warm-cache-3x*/scenarios.csv
+
+!results/claude-haiku45-low-e2e-2ae939d-isolated-warm-cache-3x*/
+results/claude-haiku45-low-e2e-2ae939d-isolated-warm-cache-3x*/*
+!results/claude-haiku45-low-e2e-2ae939d-isolated-warm-cache-3x*/manifest.json
+!results/claude-haiku45-low-e2e-2ae939d-isolated-warm-cache-3x*/report.md
+!results/claude-haiku45-low-e2e-2ae939d-isolated-warm-cache-3x*/aggregate.json
+!results/claude-haiku45-low-e2e-2ae939d-isolated-warm-cache-3x*/runs.csv
+!results/claude-haiku45-low-e2e-2ae939d-isolated-warm-cache-3x*/scenarios.csv

@@ -1,0 +1,58 @@
+{
+  "type": "agent-suite",
+  "batchId": "copilot-gpt54-medium-e2e-2ae939d-isolated-warm-cache-3x",
+  "createdAt": "2026-08-01T15:16:09.802Z",
+  "suite": {
+    "id": "e2e",
+    "description": "Diverse live-site end-to-end browser scenarios for LLM agents.",
+    "aggregation": "mean-of-scenario-medians",
+    "tasks": [
+      "wikipedia-telerik",
+      "github-login-error"
+    ]
+  },
+  "options": {
+    "suite": "e2e",
+    "agent": "copilot",
+    "drivers": "playwright,craftdriver",
+    "runs": 3,
+    "model": "gpt-5.4",
+    "reasoning": "medium",
+    "seed": 42,
+    "timeoutMs": 600000,
+    "batchId": "copilot-gpt54-medium-e2e-2ae939d-isolated-warm-cache-3x",
+    "yolo": true,
+    "headed": false
+  },
+  "aggregation": {
+    "method": "arithmetic mean of per-scenario medians",
+    "weighting": "equal weight per scenario",
+    "missingValues": "excluded from each metric mean and reported with a metric-specific count"
+  },
+  "scenarioBatches": [
+    {
+      "taskId": "wikipedia-telerik",
+      "batchId": "copilot-gpt54-medium-e2e-2ae939d-isolated-warm-cache-3x-01-wikipedia-telerik",
+      "seed": 42,
+      "exitCode": 0,
+      "signal": null,
+      "processError": null,
+      "status": "completed",
+      "successfulRuns": 6,
+      "totalRuns": 6,
+      "report": "../copilot-gpt54-medium-e2e-2ae939d-isolated-warm-cache-3x-01-wikipedia-telerik/report.md"
+    },
+    {
+      "taskId": "github-login-error",
+      "batchId": "copilot-gpt54-medium-e2e-2ae939d-isolated-warm-cache-3x-02-github-login-error",
+      "seed": 43,
+      "exitCode": 0,
+      "signal": null,
+      "processError": null,
+      "status": "completed",
+      "successfulRuns": 6,
+      "totalRuns": 6,
+      "report": "../copilot-gpt54-medium-e2e-2ae939d-isolated-warm-cache-3x-02-github-login-error/report.md"
+    }
+  ]
+}

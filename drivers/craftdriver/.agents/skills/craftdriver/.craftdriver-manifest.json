@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "craftdriverVersion": "1.10.0",
+  "files": {
+    "SKILL.md": "6e8875749d415431c852e46bf2dc889af8623d8a8566658e3efb8c8eb89c8f13",
+    "agents/openai.yaml": "a0399821a95dd066d296aee28bee9b6ccf2ac48de4597b3f6a665f8b349118a6",
+    "cheatsheet.md": "aa82c8fd8ba05aab242bd3538db54ede44ec998b5d32d917c253470002093c30",
+    "cli.md": "a52d5d75786ac15cad2fa2b32a8b6b85a3eba4b84e650507ac26ee86d238ea41",
+    "patterns.md": "3b1feded6f5e7f79d044626cb8ed37eef80bae993568de05875fedef7f1628d0",
+    "workflow.md": "352374e731964e3919d1210dd47f722d48c16123bb12b390e7f5965d5642b8d5"
+  }
+}

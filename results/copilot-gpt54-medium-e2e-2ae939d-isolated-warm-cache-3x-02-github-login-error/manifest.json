@@ -1,0 +1,632 @@
+{
+  "batchId": "copilot-gpt54-medium-e2e-2ae939d-isolated-warm-cache-3x-02-github-login-error",
+  "createdAt": "2026-08-01T15:22:18.212Z",
+  "options": {
+    "agent": "copilot",
+    "drivers": [
+      "playwright",
+      "craftdriver"
+    ],
+    "task": "github-login-error",
+    "runs": 3,
+    "model": "gpt-5.4",
+    "reasoning": "medium",
+    "seed": 43,
+    "timeoutMs": 600000,
+    "batchId": "copilot-gpt54-medium-e2e-2ae939d-isolated-warm-cache-3x-02-github-login-error",
+    "yolo": true,
+    "headed": false
+  },
+  "task": {
+    "id": "github-login-error",
+    "description": "Live-site sign-in validation flow using intentionally nonexistent credentials.",
+    "promptTemplate": "Use the {{DRIVER_SKILL}} skill and {{DRIVER_LABEL}} CLI for every browser interaction. Open a fresh {{BROWSER_MODE}} Chrome session, navigate to https://github.com/login, fill the visible Username or email address field with llm-perf-e2e-9f4c2a7b-nouser and Password with not-a-real-password-9f4c2a7b, submit the Sign in form, and return the displayed authentication error and current URL as message and url. These are synthetic credentials; do not use credentials from files, environment variables, browser storage, or any real account. Immediately before closing, capture the final visible page as final-screenshot.png using {{DRIVER_LABEL}}. Close the browser session before answering.",
+    "expected": {
+      "message": "Incorrect username or password.",
+      "urlPath": "/session"
+    },
+    "outputSchema": "schemas/message-result.schema.json"
+  },
+  "fixtureBaseUrl": null,
+  "versions": {
+    "agent": "GitHub Copilot CLI 1.0.76.\nRun 'copilot update' to check for updates.",
+    "codex": "codex-cli 0.146.0",
+    "playwright": "1.62.0",
+    "craftdriver": "1.10.0",
+    "craftdriverGitSha": "2ae939da1fc5d19003f23a2da13f88bb0aaf987f",
+    "craftdriverGitDirty": false,
+    "craftdriverWorktreeDiffSha256": null,
+    "craftdriverSkillManifest": {
+      "schemaVersion": 1,
+      "craftdriverVersion": "1.10.0",
+      "files": {
+        "SKILL.md": "6e8875749d415431c852e46bf2dc889af8623d8a8566658e3efb8c8eb89c8f13",
+        "agents/openai.yaml": "a0399821a95dd066d296aee28bee9b6ccf2ac48de4597b3f6a665f8b349118a6",
+        "cheatsheet.md": "aa82c8fd8ba05aab242bd3538db54ede44ec998b5d32d917c253470002093c30",
+        "cli.md": "a52d5d75786ac15cad2fa2b32a8b6b85a3eba4b84e650507ac26ee86d238ea41",
+        "patterns.md": "3b1feded6f5e7f79d044626cb8ed37eef80bae993568de05875fedef7f1628d0",
+        "workflow.md": "352374e731964e3919d1210dd47f722d48c16123bb12b390e7f5965d5642b8d5"
+      }
+    },
+    "vibium": "26.5.31",
+    "vibiumSkill": {
+      "name": "vibe-check",
+      "source": "https://github.com/VibiumDev/vibium/tree/b0f372ccd3ec895c4bf78d43ac9fb8eaba767a67/skills/vibe-check",
+      "sourceCommit": "b0f372ccd3ec895c4bf78d43ac9fb8eaba767a67",
+      "sha256": "127ef0f29722873157a62ec3c563963709573780f4a522469e27baf01f98653c"
+    },
+    "chrome": {
+      "executable": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+      "version": "Google Chrome 150.0.7871.187",
+      "numericVersion": "150.0.7871.187"
+    },
+    "vibiumBrowser": null
+  },
+  "preflight": {
+    "playwright": {
+      "passed": true,
+      "commands": [
+        {
+          "command": [
+            "/Users/admin/git/browser-llm-perf/node_modules/.bin/playwright",
+            "cli",
+            "-s=llm-perf-preflight-82000",
+            "open",
+            "data:text/html,<title>llm-perf preflight</title><h1>Ready</h1>"
+          ],
+          "code": 0,
+          "signal": null,
+          "timedOut": false,
+          "spawnError": null,
+          "stdout": "### Browser `llm-perf-preflight-82000` opened with pid 82212.\n### Page\n- Page URL: data:text/html,<title>llm-perf preflight</title><h1>Ready</h1>\n- Page Title: llm-perf preflight\n### Snapshot\n- [Snapshot](.playwright/output/page-2026-08-01T15-22-06-512Z.yml)\n",
+          "stderr": "",
+          "wallTimeMs": 4843
+        },
+        {
+          "command": [
+            "/Users/admin/git/browser-llm-perf/node_modules/.bin/playwright",
+            "cli",
+            "-s=llm-perf-preflight-82000",
+            "snapshot"
+          ],
+          "code": 0,
+          "signal": null,
+          "timedOut": false,
+          "spawnError": null,
+          "stdout": "### Page\n- Page URL: data:text/html,<title>llm-perf preflight</title><h1>Ready</h1>\n- Page Title: llm-perf preflight\n### Snapshot\n```yaml\n- heading \"Ready\" [level=1] [ref=e2]\n```\n",
+          "stderr": "",
+          "wallTimeMs": 1192
+        },
+        {
+          "command": [
+            "/Users/admin/git/browser-llm-perf/node_modules/.bin/playwright",
+            "cli",
+            "-s=llm-perf-preflight-82000",
+            "close"
+          ],
+          "code": 0,
+          "signal": null,
+          "timedOut": false,
+          "spawnError": null,
+          "stdout": "Browser 'llm-perf-preflight-82000' closed\n\n",
+          "stderr": "",
+          "wallTimeMs": 1245
+        },
+        {
+          "command": [
+            "/Users/admin/git/browser-llm-perf/node_modules/.bin/playwright",
+            "cli",
+            "close-all"
+          ],
+          "code": 0,
+          "signal": null,
+          "timedOut": false,
+          "spawnError": null,
+          "stdout": "",
+          "stderr": "",
+          "wallTimeMs": 1078
+        },
+        {
+          "command": [
+            "/Users/admin/git/browser-llm-perf/node_modules/.bin/playwright",
+            "cli",
+            "kill-all"
+          ],
+          "code": 0,
+          "signal": null,
+          "timedOut": false,
+          "spawnError": null,
+          "stdout": "No daemon processes found.\n",
+          "stderr": "",
+          "wallTimeMs": 1512
+        }
+      ]
+    },
+    "craftdriver": {
+      "passed": true,
+      "commands": [
+        {
+          "command": [
+            "/Users/admin/git/browser-llm-perf/node_modules/.bin/craftdriver",
+            "go",
+            "data:text/html,<title>llm-perf preflight</title><h1>Ready</h1>",
+            "--browser",
+            "chrome",
+            "--headless",
+            "--session",
+            "llm-perf-preflight-82000"
+          ],
+          "code": 0,
+          "signal": null,
+          "timedOut": false,
+          "spawnError": null,
+          "stdout": "{\"ok\":true,\"result\":{\"title\":\"llm-perf preflight\",\"url\":\"data:text/html,<title>llm-perf preflight</title><h1>Ready</h1>\"}}\n",
+          "stderr": "",
+          "wallTimeMs": 4252
+        },
+        {
+          "command": [
+            "/Users/admin/git/browser-llm-perf/node_modules/.bin/craftdriver",
+            "snapshot",
+            "--session",
+            "llm-perf-preflight-82000"
+          ],
+          "code": 0,
+          "signal": null,
+          "timedOut": false,
+          "spawnError": null,
+          "stdout": "{\"ok\":true,\"result\":{\"url\":\"data:text/html,<title>llm-perf preflight</title><h1>Ready</h1>\",\"title\":\"llm-perf preflight\",\"lines\":[\"e1: heading \\\"Ready\\\" [level=1]\"],\"documentId\":\"d1-r40pf59j\",\"revision\":1}}\n",
+          "stderr": "",
+          "wallTimeMs": 495
+        },
+        {
+          "command": [
+            "/Users/admin/git/browser-llm-perf/node_modules/.bin/craftdriver",
+            "session",
+            "close",
+            "llm-perf-preflight-82000"
+          ],
+          "code": 0,
+          "signal": null,
+          "timedOut": false,
+          "spawnError": null,
+          "stdout": "{\"ok\":true,\"result\":{\"closed\":true,\"name\":\"llm-perf-preflight-82000\"}}\n",
+          "stderr": "",
+          "wallTimeMs": 553
+        },
+        {
+          "command": [
+            "/Users/admin/git/browser-llm-perf/node_modules/.bin/craftdriver",
+            "daemon",
+            "stop"
+          ],
+          "code": 0,
+          "signal": null,
+          "timedOut": false,
+          "spawnError": null,
+          "stdout": "daemon stopped\n",
+          "stderr": "",
+          "wallTimeMs": 468
+        }
+      ]
+    }
+  },
+  "schedule": [
+    {
+      "trial": 1,
+      "driver": "craftdriver"
+    },
+    {
+      "trial": 1,
+      "driver": "playwright"
+    },
+    {
+      "trial": 2,
+      "driver": "playwright"
+    },
+    {
+      "trial": 2,
+      "driver": "craftdriver"
+    },
+    {
+      "trial": 3,
+      "driver": "craftdriver"
+    },
+    {
+      "trial": 3,
+      "driver": "playwright"
+    }
+  ],
+  "runs": [
+    {
+      "runId": "001-copilot-craftdriver",
+      "agent": "copilot",
+      "driver": "craftdriver",
+      "task": "github-login-error",
+      "successful": true,
+      "infrastructure": {
+        "exitCode": 0,
+        "timedOut": false,
+        "answerParseError": null,
+        "screenshotCaptured": true
+      },
+      "correctness": {
+        "passed": true,
+        "checks": {
+          "message": true,
+          "urlPath": true
+        }
+      },
+      "answer": {
+        "message": "Incorrect username or password.",
+        "url": "https://github.com/session"
+      },
+      "timing": {
+        "wallTimeMs": 47026,
+        "firstBrowserCommandMs": 21162,
+        "browserCommandDurationMs": 16733,
+        "agentApiDurationMs": 17941,
+        "agentReportedSessionDurationMs": 40080
+      },
+      "usage": {
+        "inputTokens": null,
+        "cachedInputTokens": null,
+        "cacheCreationInputTokens": null,
+        "outputTokens": 1338,
+        "reasoningOutputTokens": 0,
+        "aiCreditNanoUnits": 10694700000,
+        "aiCredits": 10.6947,
+        "premiumRequests": null,
+        "costUsd": null,
+        "modelUsage": null,
+        "uncachedInputTokens": null,
+        "totalTokens": null
+      },
+      "commands": {
+        "agentToolTurns": 3,
+        "browserToolTurns": 3,
+        "browserInvocations": 5,
+        "failedToolTurns": 0,
+        "failedBrowserInvocations": 0,
+        "total": 3,
+        "browser": 5,
+        "failed": 0,
+        "browserDurationMs": 16733,
+        "browserOutputBytes": 3772,
+        "allOutputBytes": 3772,
+        "firstBrowserCommandMs": 21162,
+        "agentApiDurationMs": 17941,
+        "agentReportedSessionDurationMs": 40080
+      },
+      "bytes": {
+        "agentEvents": 249791,
+        "agentStderr": 0
+      }
+    },
+    {
+      "runId": "001-copilot-playwright",
+      "agent": "copilot",
+      "driver": "playwright",
+      "task": "github-login-error",
+      "successful": true,
+      "infrastructure": {
+        "exitCode": 0,
+        "timedOut": false,
+        "answerParseError": null,
+        "screenshotCaptured": true
+      },
+      "correctness": {
+        "passed": true,
+        "checks": {
+          "message": true,
+          "urlPath": true
+        }
+      },
+      "answer": {
+        "message": "Incorrect username or password.",
+        "url": "https://github.com/session"
+      },
+      "timing": {
+        "wallTimeMs": 94179,
+        "firstBrowserCommandMs": 30066,
+        "browserCommandDurationMs": 57365,
+        "agentApiDurationMs": 24772,
+        "agentReportedSessionDurationMs": 87224
+      },
+      "usage": {
+        "inputTokens": null,
+        "cachedInputTokens": null,
+        "cacheCreationInputTokens": null,
+        "outputTokens": 2658,
+        "reasoningOutputTokens": 0,
+        "aiCreditNanoUnits": 12869300000,
+        "aiCredits": 12.8693,
+        "premiumRequests": null,
+        "costUsd": null,
+        "modelUsage": null,
+        "uncachedInputTokens": null,
+        "totalTokens": null
+      },
+      "commands": {
+        "agentToolTurns": 2,
+        "browserToolTurns": 2,
+        "browserInvocations": 19,
+        "failedToolTurns": 1,
+        "failedBrowserInvocations": 1,
+        "total": 2,
+        "browser": 19,
+        "failed": 1,
+        "browserDurationMs": 57365,
+        "browserOutputBytes": 7600,
+        "allOutputBytes": 7600,
+        "firstBrowserCommandMs": 30066,
+        "agentApiDurationMs": 24772,
+        "agentReportedSessionDurationMs": 87224
+      },
+      "bytes": {
+        "agentEvents": 488345,
+        "agentStderr": 0
+      }
+    },
+    {
+      "runId": "002-copilot-playwright",
+      "agent": "copilot",
+      "driver": "playwright",
+      "task": "github-login-error",
+      "successful": true,
+      "infrastructure": {
+        "exitCode": 0,
+        "timedOut": false,
+        "answerParseError": null,
+        "screenshotCaptured": true
+      },
+      "correctness": {
+        "passed": true,
+        "checks": {
+          "message": true,
+          "urlPath": true
+        }
+      },
+      "answer": {
+        "message": "Incorrect username or password.",
+        "url": "https://github.com/session"
+      },
+      "timing": {
+        "wallTimeMs": 71247,
+        "firstBrowserCommandMs": 28494,
+        "browserCommandDurationMs": 37233,
+        "agentApiDurationMs": 20080,
+        "agentReportedSessionDurationMs": 62799
+      },
+      "usage": {
+        "inputTokens": null,
+        "cachedInputTokens": null,
+        "cacheCreationInputTokens": null,
+        "outputTokens": 2066,
+        "reasoningOutputTokens": 0,
+        "aiCreditNanoUnits": 12487400000,
+        "aiCredits": 12.4874,
+        "premiumRequests": null,
+        "costUsd": null,
+        "modelUsage": null,
+        "uncachedInputTokens": null,
+        "totalTokens": null
+      },
+      "commands": {
+        "agentToolTurns": 2,
+        "browserToolTurns": 2,
+        "browserInvocations": 12,
+        "failedToolTurns": 1,
+        "failedBrowserInvocations": 1,
+        "total": 2,
+        "browser": 12,
+        "failed": 1,
+        "browserDurationMs": 37233,
+        "browserOutputBytes": 6562,
+        "allOutputBytes": 6562,
+        "firstBrowserCommandMs": 28494,
+        "agentApiDurationMs": 20080,
+        "agentReportedSessionDurationMs": 62799
+      },
+      "bytes": {
+        "agentEvents": 356220,
+        "agentStderr": 0
+      }
+    },
+    {
+      "runId": "002-copilot-craftdriver",
+      "agent": "copilot",
+      "driver": "craftdriver",
+      "task": "github-login-error",
+      "successful": true,
+      "infrastructure": {
+        "exitCode": 0,
+        "timedOut": false,
+        "answerParseError": null,
+        "screenshotCaptured": true
+      },
+      "correctness": {
+        "passed": true,
+        "checks": {
+          "message": true,
+          "urlPath": true
+        }
+      },
+      "answer": {
+        "message": "Incorrect username or password.",
+        "url": "https://github.com/session"
+      },
+      "timing": {
+        "wallTimeMs": 68922,
+        "firstBrowserCommandMs": 23634,
+        "browserCommandDurationMs": 36002,
+        "agentApiDurationMs": 18078,
+        "agentReportedSessionDurationMs": 60427
+      },
+      "usage": {
+        "inputTokens": null,
+        "cachedInputTokens": null,
+        "cacheCreationInputTokens": null,
+        "outputTokens": 1485,
+        "reasoningOutputTokens": 0,
+        "aiCreditNanoUnits": 10886450000,
+        "aiCredits": 10.88645,
+        "premiumRequests": null,
+        "costUsd": null,
+        "modelUsage": null,
+        "uncachedInputTokens": null,
+        "totalTokens": null
+      },
+      "commands": {
+        "agentToolTurns": 3,
+        "browserToolTurns": 3,
+        "browserInvocations": 5,
+        "failedToolTurns": 0,
+        "failedBrowserInvocations": 0,
+        "total": 3,
+        "browser": 5,
+        "failed": 0,
+        "browserDurationMs": 36002,
+        "browserOutputBytes": 3596,
+        "allOutputBytes": 3596,
+        "firstBrowserCommandMs": 23634,
+        "agentApiDurationMs": 18078,
+        "agentReportedSessionDurationMs": 60427
+      },
+      "bytes": {
+        "agentEvents": 255476,
+        "agentStderr": 0
+      }
+    },
+    {
+      "runId": "003-copilot-craftdriver",
+      "agent": "copilot",
+      "driver": "craftdriver",
+      "task": "github-login-error",
+      "successful": true,
+      "infrastructure": {
+        "exitCode": 0,
+        "timedOut": false,
+        "answerParseError": null,
+        "screenshotCaptured": true
+      },
+      "correctness": {
+        "passed": true,
+        "checks": {
+          "message": true,
+          "urlPath": true
+        }
+      },
+      "answer": {
+        "message": "Incorrect username or password.",
+        "url": "https://github.com/session"
+      },
+      "timing": {
+        "wallTimeMs": 45295,
+        "firstBrowserCommandMs": 23586,
+        "browserCommandDurationMs": 15336,
+        "agentApiDurationMs": 16502,
+        "agentReportedSessionDurationMs": 37173
+      },
+      "usage": {
+        "inputTokens": null,
+        "cachedInputTokens": null,
+        "cacheCreationInputTokens": null,
+        "outputTokens": 1274,
+        "reasoningOutputTokens": 0,
+        "aiCreditNanoUnits": 10213300000,
+        "aiCredits": 10.2133,
+        "premiumRequests": null,
+        "costUsd": null,
+        "modelUsage": null,
+        "uncachedInputTokens": null,
+        "totalTokens": null
+      },
+      "commands": {
+        "agentToolTurns": 3,
+        "browserToolTurns": 3,
+        "browserInvocations": 5,
+        "failedToolTurns": 0,
+        "failedBrowserInvocations": 0,
+        "total": 3,
+        "browser": 5,
+        "failed": 0,
+        "browserDurationMs": 15336,
+        "browserOutputBytes": 3282,
+        "allOutputBytes": 3282,
+        "firstBrowserCommandMs": 23586,
+        "agentApiDurationMs": 16502,
+        "agentReportedSessionDurationMs": 37173
+      },
+      "bytes": {
+        "agentEvents": 239507,
+        "agentStderr": 0
+      }
+    },
+    {
+      "runId": "003-copilot-playwright",
+      "agent": "copilot",
+      "driver": "playwright",
+      "task": "github-login-error",
+      "successful": true,
+      "infrastructure": {
+        "exitCode": 0,
+        "timedOut": false,
+        "answerParseError": null,
+        "screenshotCaptured": true
+      },
+      "correctness": {
+        "passed": true,
+        "checks": {
+          "message": true,
+          "urlPath": true
+        }
+      },
+      "answer": {
+        "message": "Incorrect username or password.",
+        "url": "https://github.com/session"
+      },
+      "timing": {
+        "wallTimeMs": 66690,
+        "firstBrowserCommandMs": 20060,
+        "browserCommandDurationMs": 30784,
+        "agentApiDurationMs": 22129,
+        "agentReportedSessionDurationMs": 60338
+      },
+      "usage": {
+        "inputTokens": null,
+        "cachedInputTokens": null,
+        "cacheCreationInputTokens": null,
+        "outputTokens": 2064,
+        "reasoningOutputTokens": 0,
+        "aiCreditNanoUnits": 13638550000,
+        "aiCredits": 13.63855,
+        "premiumRequests": null,
+        "costUsd": null,
+        "modelUsage": null,
+        "uncachedInputTokens": null,
+        "totalTokens": null
+      },
+      "commands": {
+        "agentToolTurns": 7,
+        "browserToolTurns": 5,
+        "browserInvocations": 13,
+        "failedToolTurns": 1,
+        "failedBrowserInvocations": 1,
+        "total": 7,
+        "browser": 13,
+        "failed": 1,
+        "browserDurationMs": 30784,
+        "browserOutputBytes": 6995,
+        "allOutputBytes": 7089,
+        "firstBrowserCommandMs": 20060,
+        "agentApiDurationMs": 22129,
+        "agentReportedSessionDurationMs": 60338
+      },
+      "bytes": {
+        "agentEvents": 405210,
+        "agentStderr": 0
+      }
+    }
+  ]
+}

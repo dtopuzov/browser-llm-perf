@@ -1,0 +1,11 @@
+{
+  "id": "local-search-telerik",
+  "description": "Deterministic local search flow used for primary token and latency comparisons.",
+  "fixture": "search",
+  "promptTemplate": "Use the {{DRIVER_SKILL}} skill and {{DRIVER_LABEL}} CLI for every browser interaction. Open a fresh {{BROWSER_MODE}} Chrome session, navigate to {{BASE_URL}}/, use the visible search form to search for Telerik, open the first result, and return its page heading and current URL as title and url. Do not navigate directly to a result URL. Immediately before closing, capture the final visible page as final-screenshot.png using {{DRIVER_LABEL}}. Close the browser session before answering.",
+  "expected": {
+    "title": "Telerik",
+    "urlPath": "/articles/telerik.html"
+  },
+  "outputSchema": "schemas/browser-result.schema.json"
+}

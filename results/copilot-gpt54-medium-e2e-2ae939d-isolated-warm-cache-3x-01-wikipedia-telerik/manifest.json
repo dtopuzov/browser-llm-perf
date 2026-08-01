@@ -1,0 +1,632 @@
+{
+  "batchId": "copilot-gpt54-medium-e2e-2ae939d-isolated-warm-cache-3x-01-wikipedia-telerik",
+  "createdAt": "2026-08-01T15:16:30.005Z",
+  "options": {
+    "agent": "copilot",
+    "drivers": [
+      "playwright",
+      "craftdriver"
+    ],
+    "task": "wikipedia-telerik",
+    "runs": 3,
+    "model": "gpt-5.4",
+    "reasoning": "medium",
+    "seed": 42,
+    "timeoutMs": 600000,
+    "batchId": "copilot-gpt54-medium-e2e-2ae939d-isolated-warm-cache-3x-01-wikipedia-telerik",
+    "yolo": true,
+    "headed": false
+  },
+  "task": {
+    "id": "wikipedia-telerik",
+    "description": "Live-site realism check based on the original example prompt.",
+    "promptTemplate": "Use the {{DRIVER_SKILL}} skill and {{DRIVER_LABEL}} CLI for every browser interaction. Open a fresh {{BROWSER_MODE}} Chrome session, navigate to https://en.wikipedia.org/wiki/Main_Page, use the visible Search Wikipedia field to search for Telerik, and return the destination article heading and canonical URL as title and url. Do not navigate directly to the Telerik article. Immediately before closing, capture the final visible page as final-screenshot.png using {{DRIVER_LABEL}}. Close the browser session before answering.",
+    "expected": {
+      "title": "Telerik",
+      "url": "https://en.wikipedia.org/wiki/Telerik"
+    },
+    "outputSchema": "schemas/browser-result.schema.json"
+  },
+  "fixtureBaseUrl": null,
+  "versions": {
+    "agent": "GitHub Copilot CLI 1.0.76.\nRun 'copilot update' to check for updates.",
+    "codex": "codex-cli 0.146.0",
+    "playwright": "1.62.0",
+    "craftdriver": "1.10.0",
+    "craftdriverGitSha": "2ae939da1fc5d19003f23a2da13f88bb0aaf987f",
+    "craftdriverGitDirty": false,
+    "craftdriverWorktreeDiffSha256": null,
+    "craftdriverSkillManifest": {
+      "schemaVersion": 1,
+      "craftdriverVersion": "1.10.0",
+      "files": {
+        "SKILL.md": "6e8875749d415431c852e46bf2dc889af8623d8a8566658e3efb8c8eb89c8f13",
+        "agents/openai.yaml": "a0399821a95dd066d296aee28bee9b6ccf2ac48de4597b3f6a665f8b349118a6",
+        "cheatsheet.md": "aa82c8fd8ba05aab242bd3538db54ede44ec998b5d32d917c253470002093c30",
+        "cli.md": "a52d5d75786ac15cad2fa2b32a8b6b85a3eba4b84e650507ac26ee86d238ea41",
+        "patterns.md": "3b1feded6f5e7f79d044626cb8ed37eef80bae993568de05875fedef7f1628d0",
+        "workflow.md": "352374e731964e3919d1210dd47f722d48c16123bb12b390e7f5965d5642b8d5"
+      }
+    },
+    "vibium": "26.5.31",
+    "vibiumSkill": {
+      "name": "vibe-check",
+      "source": "https://github.com/VibiumDev/vibium/tree/b0f372ccd3ec895c4bf78d43ac9fb8eaba767a67/skills/vibe-check",
+      "sourceCommit": "b0f372ccd3ec895c4bf78d43ac9fb8eaba767a67",
+      "sha256": "127ef0f29722873157a62ec3c563963709573780f4a522469e27baf01f98653c"
+    },
+    "chrome": {
+      "executable": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+      "version": "Google Chrome 150.0.7871.187",
+      "numericVersion": "150.0.7871.187"
+    },
+    "vibiumBrowser": null
+  },
+  "preflight": {
+    "playwright": {
+      "passed": true,
+      "commands": [
+        {
+          "command": [
+            "/Users/admin/git/browser-llm-perf/node_modules/.bin/playwright",
+            "cli",
+            "-s=llm-perf-preflight-75889",
+            "open",
+            "data:text/html,<title>llm-perf preflight</title><h1>Ready</h1>"
+          ],
+          "code": 0,
+          "signal": null,
+          "timedOut": false,
+          "spawnError": null,
+          "stdout": "### Browser `llm-perf-preflight-75889` opened with pid 76034.\n### Page\n- Page URL: data:text/html,<title>llm-perf preflight</title><h1>Ready</h1>\n- Page Title: llm-perf preflight\n### Snapshot\n- [Snapshot](.playwright/output/page-2026-08-01T15-16-19-596Z.yml)\n",
+          "stderr": "",
+          "wallTimeMs": 4681
+        },
+        {
+          "command": [
+            "/Users/admin/git/browser-llm-perf/node_modules/.bin/playwright",
+            "cli",
+            "-s=llm-perf-preflight-75889",
+            "snapshot"
+          ],
+          "code": 0,
+          "signal": null,
+          "timedOut": false,
+          "spawnError": null,
+          "stdout": "### Page\n- Page URL: data:text/html,<title>llm-perf preflight</title><h1>Ready</h1>\n- Page Title: llm-perf preflight\n### Snapshot\n```yaml\n- heading \"Ready\" [level=1] [ref=e2]\n```\n",
+          "stderr": "",
+          "wallTimeMs": 1096
+        },
+        {
+          "command": [
+            "/Users/admin/git/browser-llm-perf/node_modules/.bin/playwright",
+            "cli",
+            "-s=llm-perf-preflight-75889",
+            "close"
+          ],
+          "code": 0,
+          "signal": null,
+          "timedOut": false,
+          "spawnError": null,
+          "stdout": "Browser 'llm-perf-preflight-75889' closed\n\n",
+          "stderr": "",
+          "wallTimeMs": 1071
+        },
+        {
+          "command": [
+            "/Users/admin/git/browser-llm-perf/node_modules/.bin/playwright",
+            "cli",
+            "close-all"
+          ],
+          "code": 0,
+          "signal": null,
+          "timedOut": false,
+          "spawnError": null,
+          "stdout": "",
+          "stderr": "",
+          "wallTimeMs": 1001
+        },
+        {
+          "command": [
+            "/Users/admin/git/browser-llm-perf/node_modules/.bin/playwright",
+            "cli",
+            "kill-all"
+          ],
+          "code": 0,
+          "signal": null,
+          "timedOut": false,
+          "spawnError": null,
+          "stdout": "No daemon processes found.\n",
+          "stderr": "",
+          "wallTimeMs": 1387
+        }
+      ]
+    },
+    "craftdriver": {
+      "passed": true,
+      "commands": [
+        {
+          "command": [
+            "/Users/admin/git/browser-llm-perf/node_modules/.bin/craftdriver",
+            "go",
+            "data:text/html,<title>llm-perf preflight</title><h1>Ready</h1>",
+            "--browser",
+            "chrome",
+            "--headless",
+            "--session",
+            "llm-perf-preflight-75889"
+          ],
+          "code": 0,
+          "signal": null,
+          "timedOut": false,
+          "spawnError": null,
+          "stdout": "{\"ok\":true,\"result\":{\"title\":\"llm-perf preflight\",\"url\":\"data:text/html,<title>llm-perf preflight</title><h1>Ready</h1>\"}}\n",
+          "stderr": "",
+          "wallTimeMs": 3499
+        },
+        {
+          "command": [
+            "/Users/admin/git/browser-llm-perf/node_modules/.bin/craftdriver",
+            "snapshot",
+            "--session",
+            "llm-perf-preflight-75889"
+          ],
+          "code": 0,
+          "signal": null,
+          "timedOut": false,
+          "spawnError": null,
+          "stdout": "{\"ok\":true,\"result\":{\"url\":\"data:text/html,<title>llm-perf preflight</title><h1>Ready</h1>\",\"title\":\"llm-perf preflight\",\"lines\":[\"e1: heading \\\"Ready\\\" [level=1]\"],\"documentId\":\"d1-skbjnlbl\",\"revision\":1}}\n",
+          "stderr": "",
+          "wallTimeMs": 582
+        },
+        {
+          "command": [
+            "/Users/admin/git/browser-llm-perf/node_modules/.bin/craftdriver",
+            "session",
+            "close",
+            "llm-perf-preflight-75889"
+          ],
+          "code": 0,
+          "signal": null,
+          "timedOut": false,
+          "spawnError": null,
+          "stdout": "{\"ok\":true,\"result\":{\"closed\":true,\"name\":\"llm-perf-preflight-75889\"}}\n",
+          "stderr": "",
+          "wallTimeMs": 481
+        },
+        {
+          "command": [
+            "/Users/admin/git/browser-llm-perf/node_modules/.bin/craftdriver",
+            "daemon",
+            "stop"
+          ],
+          "code": 0,
+          "signal": null,
+          "timedOut": false,
+          "spawnError": null,
+          "stdout": "daemon stopped\n",
+          "stderr": "",
+          "wallTimeMs": 423
+        }
+      ]
+    }
+  },
+  "schedule": [
+    {
+      "trial": 1,
+      "driver": "playwright"
+    },
+    {
+      "trial": 1,
+      "driver": "craftdriver"
+    },
+    {
+      "trial": 2,
+      "driver": "craftdriver"
+    },
+    {
+      "trial": 2,
+      "driver": "playwright"
+    },
+    {
+      "trial": 3,
+      "driver": "playwright"
+    },
+    {
+      "trial": 3,
+      "driver": "craftdriver"
+    }
+  ],
+  "runs": [
+    {
+      "runId": "001-copilot-playwright",
+      "agent": "copilot",
+      "driver": "playwright",
+      "task": "wikipedia-telerik",
+      "successful": true,
+      "infrastructure": {
+        "exitCode": 0,
+        "timedOut": false,
+        "answerParseError": null,
+        "screenshotCaptured": true
+      },
+      "correctness": {
+        "passed": true,
+        "checks": {
+          "title": true,
+          "url": true
+        }
+      },
+      "answer": {
+        "title": "Telerik",
+        "url": "https://en.wikipedia.org/wiki/Telerik"
+      },
+      "timing": {
+        "wallTimeMs": 57488,
+        "firstBrowserCommandMs": 22963,
+        "browserCommandDurationMs": 23033,
+        "agentApiDurationMs": 20338,
+        "agentReportedSessionDurationMs": 49143
+      },
+      "usage": {
+        "inputTokens": null,
+        "cachedInputTokens": null,
+        "cacheCreationInputTokens": null,
+        "outputTokens": 1634,
+        "reasoningOutputTokens": 0,
+        "aiCreditNanoUnits": 12531300000,
+        "aiCredits": 12.5313,
+        "premiumRequests": null,
+        "costUsd": null,
+        "modelUsage": null,
+        "uncachedInputTokens": null,
+        "totalTokens": null
+      },
+      "commands": {
+        "agentToolTurns": 3,
+        "browserToolTurns": 3,
+        "browserInvocations": 8,
+        "failedToolTurns": 0,
+        "failedBrowserInvocations": 0,
+        "total": 3,
+        "browser": 8,
+        "failed": 0,
+        "browserDurationMs": 23033,
+        "browserOutputBytes": 2100,
+        "allOutputBytes": 2100,
+        "firstBrowserCommandMs": 22963,
+        "agentApiDurationMs": 20338,
+        "agentReportedSessionDurationMs": 49143
+      },
+      "bytes": {
+        "agentEvents": 329245,
+        "agentStderr": 0
+      }
+    },
+    {
+      "runId": "001-copilot-craftdriver",
+      "agent": "copilot",
+      "driver": "craftdriver",
+      "task": "wikipedia-telerik",
+      "successful": true,
+      "infrastructure": {
+        "exitCode": 0,
+        "timedOut": false,
+        "answerParseError": null,
+        "screenshotCaptured": true
+      },
+      "correctness": {
+        "passed": true,
+        "checks": {
+          "title": true,
+          "url": true
+        }
+      },
+      "answer": {
+        "title": "Telerik",
+        "url": "https://en.wikipedia.org/wiki/Telerik"
+      },
+      "timing": {
+        "wallTimeMs": 38744,
+        "firstBrowserCommandMs": 18661,
+        "browserCommandDurationMs": 15551,
+        "agentApiDurationMs": 12323,
+        "agentReportedSessionDurationMs": 32690
+      },
+      "usage": {
+        "inputTokens": null,
+        "cachedInputTokens": null,
+        "cacheCreationInputTokens": null,
+        "outputTokens": 1198,
+        "reasoningOutputTokens": 0,
+        "aiCreditNanoUnits": 9334200000,
+        "aiCredits": 9.3342,
+        "premiumRequests": null,
+        "costUsd": null,
+        "modelUsage": null,
+        "uncachedInputTokens": null,
+        "totalTokens": null
+      },
+      "commands": {
+        "agentToolTurns": 2,
+        "browserToolTurns": 2,
+        "browserInvocations": 6,
+        "failedToolTurns": 0,
+        "failedBrowserInvocations": 0,
+        "total": 2,
+        "browser": 6,
+        "failed": 0,
+        "browserDurationMs": 15551,
+        "browserOutputBytes": 5745,
+        "allOutputBytes": 5745,
+        "firstBrowserCommandMs": 18661,
+        "agentApiDurationMs": 12323,
+        "agentReportedSessionDurationMs": 32690
+      },
+      "bytes": {
+        "agentEvents": 231094,
+        "agentStderr": 0
+      }
+    },
+    {
+      "runId": "002-copilot-craftdriver",
+      "agent": "copilot",
+      "driver": "craftdriver",
+      "task": "wikipedia-telerik",
+      "successful": true,
+      "infrastructure": {
+        "exitCode": 0,
+        "timedOut": false,
+        "answerParseError": null,
+        "screenshotCaptured": true
+      },
+      "correctness": {
+        "passed": true,
+        "checks": {
+          "title": true,
+          "url": true
+        }
+      },
+      "answer": {
+        "title": "Telerik",
+        "url": "https://en.wikipedia.org/wiki/Telerik"
+      },
+      "timing": {
+        "wallTimeMs": 42166,
+        "firstBrowserCommandMs": 18566,
+        "browserCommandDurationMs": 15329,
+        "agentApiDurationMs": 17486,
+        "agentReportedSessionDurationMs": 36036
+      },
+      "usage": {
+        "inputTokens": null,
+        "cachedInputTokens": null,
+        "cacheCreationInputTokens": null,
+        "outputTokens": 1465,
+        "reasoningOutputTokens": 0,
+        "aiCreditNanoUnits": 11989200000,
+        "aiCredits": 11.9892,
+        "premiumRequests": null,
+        "costUsd": null,
+        "modelUsage": null,
+        "uncachedInputTokens": null,
+        "totalTokens": null
+      },
+      "commands": {
+        "agentToolTurns": 5,
+        "browserToolTurns": 5,
+        "browserInvocations": 6,
+        "failedToolTurns": 0,
+        "failedBrowserInvocations": 0,
+        "total": 5,
+        "browser": 6,
+        "failed": 0,
+        "browserDurationMs": 15329,
+        "browserOutputBytes": 5835,
+        "allOutputBytes": 5835,
+        "firstBrowserCommandMs": 18566,
+        "agentApiDurationMs": 17486,
+        "agentReportedSessionDurationMs": 36036
+      },
+      "bytes": {
+        "agentEvents": 263827,
+        "agentStderr": 0
+      }
+    },
+    {
+      "runId": "002-copilot-playwright",
+      "agent": "copilot",
+      "driver": "playwright",
+      "task": "wikipedia-telerik",
+      "successful": true,
+      "infrastructure": {
+        "exitCode": 0,
+        "timedOut": false,
+        "answerParseError": null,
+        "screenshotCaptured": true
+      },
+      "correctness": {
+        "passed": true,
+        "checks": {
+          "title": true,
+          "url": true
+        }
+      },
+      "answer": {
+        "title": "Telerik",
+        "url": "https://en.wikipedia.org/wiki/Telerik"
+      },
+      "timing": {
+        "wallTimeMs": 57224,
+        "firstBrowserCommandMs": 22231,
+        "browserCommandDurationMs": 25514,
+        "agentApiDurationMs": 20702,
+        "agentReportedSessionDurationMs": 51145
+      },
+      "usage": {
+        "inputTokens": null,
+        "cachedInputTokens": null,
+        "cacheCreationInputTokens": null,
+        "outputTokens": 2086,
+        "reasoningOutputTokens": 0,
+        "aiCreditNanoUnits": 18546900000,
+        "aiCredits": 18.5469,
+        "premiumRequests": null,
+        "costUsd": null,
+        "modelUsage": null,
+        "uncachedInputTokens": null,
+        "totalTokens": null
+      },
+      "commands": {
+        "agentToolTurns": 3,
+        "browserToolTurns": 3,
+        "browserInvocations": 9,
+        "failedToolTurns": 0,
+        "failedBrowserInvocations": 0,
+        "total": 3,
+        "browser": 9,
+        "failed": 0,
+        "browserDurationMs": 25514,
+        "browserOutputBytes": 967,
+        "allOutputBytes": 967,
+        "firstBrowserCommandMs": 22231,
+        "agentApiDurationMs": 20702,
+        "agentReportedSessionDurationMs": 51145
+      },
+      "bytes": {
+        "agentEvents": 578738,
+        "agentStderr": 0
+      }
+    },
+    {
+      "runId": "003-copilot-playwright",
+      "agent": "copilot",
+      "driver": "playwright",
+      "task": "wikipedia-telerik",
+      "successful": true,
+      "infrastructure": {
+        "exitCode": 0,
+        "timedOut": false,
+        "answerParseError": null,
+        "screenshotCaptured": true
+      },
+      "correctness": {
+        "passed": true,
+        "checks": {
+          "title": true,
+          "url": true
+        }
+      },
+      "answer": {
+        "title": "Telerik",
+        "url": "https://en.wikipedia.org/wiki/Telerik"
+      },
+      "timing": {
+        "wallTimeMs": 62210,
+        "firstBrowserCommandMs": 25713,
+        "browserCommandDurationMs": 25633,
+        "agentApiDurationMs": 25389,
+        "agentReportedSessionDurationMs": 56058
+      },
+      "usage": {
+        "inputTokens": null,
+        "cachedInputTokens": null,
+        "cacheCreationInputTokens": null,
+        "outputTokens": 2561,
+        "reasoningOutputTokens": 0,
+        "aiCreditNanoUnits": 12980100000,
+        "aiCredits": 12.9801,
+        "premiumRequests": null,
+        "costUsd": null,
+        "modelUsage": null,
+        "uncachedInputTokens": null,
+        "totalTokens": null
+      },
+      "commands": {
+        "agentToolTurns": 3,
+        "browserToolTurns": 3,
+        "browserInvocations": 8,
+        "failedToolTurns": 0,
+        "failedBrowserInvocations": 0,
+        "total": 3,
+        "browser": 8,
+        "failed": 0,
+        "browserDurationMs": 25633,
+        "browserOutputBytes": 1488,
+        "allOutputBytes": 1488,
+        "firstBrowserCommandMs": 25713,
+        "agentApiDurationMs": 25389,
+        "agentReportedSessionDurationMs": 56058
+      },
+      "bytes": {
+        "agentEvents": 293825,
+        "agentStderr": 0
+      }
+    },
+    {
+      "runId": "003-copilot-craftdriver",
+      "agent": "copilot",
+      "driver": "craftdriver",
+      "task": "wikipedia-telerik",
+      "successful": true,
+      "infrastructure": {
+        "exitCode": 0,
+        "timedOut": false,
+        "answerParseError": null,
+        "screenshotCaptured": true
+      },
+      "correctness": {
+        "passed": true,
+        "checks": {
+          "title": true,
+          "url": true
+        }
+      },
+      "answer": {
+        "title": "Telerik",
+        "url": "https://en.wikipedia.org/wiki/Telerik"
+      },
+      "timing": {
+        "wallTimeMs": 49506,
+        "firstBrowserCommandMs": 21069,
+        "browserCommandDurationMs": 21868,
+        "agentApiDurationMs": 18659,
+        "agentReportedSessionDurationMs": 42648
+      },
+      "usage": {
+        "inputTokens": null,
+        "cachedInputTokens": null,
+        "cacheCreationInputTokens": null,
+        "outputTokens": 1540,
+        "reasoningOutputTokens": 0,
+        "aiCreditNanoUnits": 11292750000,
+        "aiCredits": 11.29275,
+        "premiumRequests": null,
+        "costUsd": null,
+        "modelUsage": null,
+        "uncachedInputTokens": null,
+        "totalTokens": null
+      },
+      "commands": {
+        "agentToolTurns": 5,
+        "browserToolTurns": 5,
+        "browserInvocations": 6,
+        "failedToolTurns": 0,
+        "failedBrowserInvocations": 0,
+        "total": 5,
+        "browser": 6,
+        "failed": 0,
+        "browserDurationMs": 21868,
+        "browserOutputBytes": 5835,
+        "allOutputBytes": 5835,
+        "firstBrowserCommandMs": 21069,
+        "agentApiDurationMs": 18659,
+        "agentReportedSessionDurationMs": 42648
+      },
+      "bytes": {
+        "agentEvents": 241058,
+        "agentStderr": 0
+      }
+    }
+  ]
+}
