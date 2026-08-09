@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "craftdriverVersion": "1.13.0",
   "files": {
-    "SKILL.md": "d2fa73c8918dd2b0459c078270cd4d7d1716910734457940e314e2dd413b123d",
+    "SKILL.md": "845f1b0cfdbd4744f2e1dd9f2ea3f7f81db4a1359b1e6ea90c77528d2f4234bf",
     "agents/openai.yaml": "a0399821a95dd066d296aee28bee9b6ccf2ac48de4597b3f6a665f8b349118a6",
     "cheatsheet.md": "aa82c8fd8ba05aab242bd3538db54ede44ec998b5d32d917c253470002093c30",
     "cli.md": "b2ff7e9be3396677caa66da9dee17696cdeaf2ff2c381280e6102b51848995f9",

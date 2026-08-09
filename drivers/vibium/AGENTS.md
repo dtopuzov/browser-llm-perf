@@ -2,6 +2,7 @@
 
 - This is one isolated benchmark trial. Do not use subagents or delegate the task.
 - Load and follow `.agents/skills/vibe-check/SKILL.md`.
+- Treat that installed skill as the command reference. Do not run the CLI's global `--help`; if required syntax is absent, use only the narrowest command-specific help.
 - Use only the repository-local CLI through `npx --no-install vibium` for browser interaction.
 - Vibium's managed Chrome for Testing is already installed and isolated for this trial. Never run `npm install`, `vibium install`, download a browser/driver manually, or switch to another browser.
 - The first browser command must include `--headless`; later commands must reuse that single daemon-backed browser session.
