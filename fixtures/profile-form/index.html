@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Profile settings</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; margin: 3rem auto; max-width: 32rem; padding: 0 1rem; }
+      label { display: block; margin-top: 1rem; }
+      input[type="text"], input[type="email"] { display: block; width: 100%; box-sizing: border-box; padding: 0.6rem; margin-top: 0.35rem; }
+      fieldset { margin: 1.25rem 0 0; }
+      .inline { display: flex; align-items: center; gap: 0.5rem; margin-top: 1rem; }
+      .inline label { margin: 0; }
+      button { margin-top: 1.5rem; padding: 0.7rem 1.4rem; }
+      #status { color: #0b5c1f; font-weight: 600; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Profile settings</h1>
+      <form id="profile-form">
+        <label for="display-name">Display name</label>
+        <input id="display-name" name="displayName" type="text" autocomplete="off" />
+
+        <label for="work-email">Work email</label>
+        <input id="work-email" name="workEmail" type="email" autocomplete="off" />
+
+        <label for="job-title">Job title</label>
+        <input id="job-title" name="jobTitle" type="text" autocomplete="off" />
+
+        <div class="inline">
+          <input id="newsletter" name="newsletter" type="checkbox" />
+          <label for="newsletter">Newsletter</label>
+        </div>
+
+        <fieldset>
+          <legend>Digest frequency</legend>
+          <div class="inline">
+            <input id="freq-daily" name="frequency" type="radio" value="daily" />
+            <label for="freq-daily">Daily</label>
+          </div>
+          <div class="inline">
+            <input id="freq-weekly" name="frequency" type="radio" value="weekly" />
+            <label for="freq-weekly">Weekly</label>
+          </div>
+        </fieldset>
+
+        <button id="save" type="submit">Save profile</button>
+      </form>
+      <p id="status" role="status"></p>
+    </main>
+    <script>
+      const form = document.querySelector('#profile-form');
+      const status = document.querySelector('#status');
+      form.addEventListener('submit', event => {
+        event.preventDefault();
+        const name = document.querySelector('#display-name').value.trim();
+        const email = document.querySelector('#work-email').value.trim();
+        const title = document.querySelector('#job-title').value.trim();
+        const newsletter = document.querySelector('#newsletter').checked;
+        const frequency = document.querySelector('input[name="frequency"]:checked')?.value ?? 'no';
+        if (!name || !email || !title) {
+          status.textContent = 'Display name, work email and job title are required';
+          return;
+        }
+        status.textContent = newsletter
+          ? `Saved ${name}, ${title}, with ${frequency} newsletter`
+          : `Saved ${name}, ${title}, without newsletter`;
+      });
+    </script>
+  </body>
+</html>

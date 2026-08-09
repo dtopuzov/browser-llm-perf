@@ -1,0 +1,11 @@
+{
+  "id": "local-profile-form",
+  "description": "Deterministic five-step form flow whose targets are visible in the first snapshot, isolating the benefit of batching already-known interactions.",
+  "fixture": "profile-form",
+  "promptTemplate": "Use the {{DRIVER_SKILL}} skill and {{DRIVER_LABEL}} CLI for every browser interaction. Open a fresh {{BROWSER_MODE}} Chrome session, navigate to {{BASE_URL}}/, then set Display name to Mitko Petrov, set Work email to mitko@example.test, set Job title to Staff Engineer, tick the Newsletter checkbox, choose the Weekly digest frequency, and click Save profile. Return the visible confirmation message and the current URL as message and url. Close the browser session before answering.",
+  "expected": {
+    "message": "Saved Mitko Petrov, Staff Engineer, with weekly newsletter",
+    "urlPath": "/"
+  },
+  "outputSchema": "schemas/message-result.schema.json"
+}
