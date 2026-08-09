@@ -9,6 +9,7 @@ import { performance } from 'node:perf_hooks';
 import { fileURLToPath } from 'node:url';
 import { installedChromeInfo, prepareVibiumRuntime, prepareVibiumSupport } from './vibium-runtime.mjs';
 import { classifyCommandCompletion, shellExitCodeFromEvent } from './command-metrics.mjs';
+import { recordCraftDriverChromeProvenance } from './chrome-driver-provenance.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const sharedCraftDriverCache = process.env.CRAFTDRIVER_CACHE_DIR
@@ -1141,13 +1142,21 @@ async function main() {
     await fs.access(path.join(driverDefinitions[driver].template, skillRoot, 'skills'));
   }
 
-  const fixtureServer = await startFixtureServer(task.fixture);
-  try {
-    const vibiumSupport = options.drivers.includes('vibium') ? await prepareVibiumSupport() : null;
   const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
   const batchId = safeId(options.batchId ?? `${task.id}-${timestamp}`);
   const batchDir = path.join(root, 'results', batchId);
   await fs.mkdir(path.join(batchDir, 'runs'), { recursive: true });
+  await fs.mkdir(path.join(batchDir, 'preflight'), { recursive: true });
+  const fixtureServer = await startFixtureServer(task.fixture);
+  try {
+    const vibiumSupport = options.drivers.includes('vibium') ? await prepareVibiumSupport() : null;
+  const systemChrome = installedChromeInfo();
+  const craftdriverBrowser = options.drivers.includes('craftdriver')
+    ? await recordCraftDriverChromeProvenance(
+        systemChrome,
+        path.join(batchDir, 'preflight', 'craftdriver-browser-driver.json'),
+      )
+    : null;
   const versions = {
     agent: agentVersion,
     codex: options.agent === 'codex' ? agentVersion : commandOutput(process.env.CODEX_BIN ?? 'codex', ['--version']),
@@ -1175,7 +1184,8 @@ async function main() {
       sourceCommit: 'b0f372ccd3ec895c4bf78d43ac9fb8eaba767a67',
       sha256: sha256(await fs.readFile(path.join(root, 'drivers', 'vibium', '.agents', 'skills', 'vibe-check', 'SKILL.md'))),
     },
-    chrome: installedChromeInfo(),
+    chrome: systemChrome,
+    craftdriverBrowser,
     vibiumBrowser: vibiumSupport ? {
       source: vibiumSupport.browserSource,
       chrome: vibiumSupport.chrome,

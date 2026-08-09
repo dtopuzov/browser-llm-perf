@@ -94,10 +94,13 @@ with alternating driver order. Correctness requires the expected structured
 answer and a final screenshot. The headline gives both scenarios equal weight
 by averaging their medians.
 
-Both drivers use installed Google Chrome 150.0.7871.187. Browser binaries are
-warmed before measurement; browser state and agent history are not reused. Raw
-streams, command logs, timings, and screenshots remain local, while curated
-reports and machine-readable aggregates are published.
+Both drivers use installed Google Chrome 150.0.7871.187. Before preflight, the
+harness resolves the exact ChromeDriver CraftDriver will launch, records both
+executable paths and versions, and aborts on a Chrome/ChromeDriver major
+mismatch. Browser binaries are warmed before measurement; browser state and
+agent history are not reused. Raw streams, command logs, timings, and
+screenshots remain local, while curated reports and machine-readable aggregates
+are published.
 
 All 24 trials passed their structured-answer checks and produced a final
 screenshot. Live sites and three-run samples make the percentages directional
