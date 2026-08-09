@@ -1,7 +1,0 @@
-runId,agent,driver,successful,wallTimeMs,agentApiDurationMs,agentReportedSessionDurationMs,aiCredits,aiCreditNanoUnits,premiumRequests,costUsd,inputTokens,cachedInputTokens,cacheCreationInputTokens,uncachedInputTokens,outputTokens,reasoningOutputTokens,totalTokens,agentToolTurns,browserToolTurns,browserCalls,browserCommandDurationMs,browserOutputBytes,failedCommands
-001-claude-playwright,claude,playwright,true,71616,45266,68526,,,,0.1694873,469826,410763,58343,59063,2201,0,472027,9,9,9,25130,5409,0
-001-claude-craftdriver,claude,craftdriver,true,44704,29412,42034,,,,0.05803730000000001,252454,239343,12422,13111,1714,0,254168,6,6,6,14139,5633,0
-002-claude-craftdriver,claude,craftdriver,true,40223,24353,37550,,,,0.11824470000000001,251957,207037,44231,44920,1678,0,253635,6,6,6,14240,5633,0
-002-claude-playwright,claude,playwright,true,58262,36151,55687,,,,0.07486330000000001,338469,321953,15812,16516,2068,0,340537,8,8,8,21147,7443,0
-003-claude-playwright,claude,playwright,true,62882,36239,60315,,,,0.0823077,408245,391167,16358,17078,1951,0,410196,10,10,10,25465,9398,0
-003-claude-craftdriver,claude,craftdriver,true,46559,30823,43694,,,,0.0591613,252556,239343,12524,13213,1898,0,254454,6,6,6,14230,5633,0

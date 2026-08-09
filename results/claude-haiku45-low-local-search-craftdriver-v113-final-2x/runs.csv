@@ -1,0 +1,5 @@
+runId,agent,driver,successful,wallTimeMs,agentApiDurationMs,agentReportedSessionDurationMs,aiCredits,aiCreditNanoUnits,premiumRequests,costUsd,inputTokens,cachedInputTokens,cacheCreationInputTokens,uncachedInputTokens,outputTokens,reasoningOutputTokens,totalTokens,agentToolTurns,browserToolTurns,browserCalls,browserCommandDurationMs,browserOutputBytes,failedCommands
+001-claude-craftdriver,claude,craftdriver,true,40102,23738,37112,,,,0.0806138,166175,136668,28835,29507,1721,0,167896,4,4,6,14817,1600,0
+001-claude-playwright,claude,playwright,true,57833,31609,53123,,,,0.0674921,324810,310711,13387,14099,1787,0,326597,9,9,9,23838,2471,0
+002-claude-playwright,claude,playwright,true,56004,30471,52728,,,,0.06532050000000002,322757,308935,13110,13822,1499,0,324256,9,9,9,23818,2471,0
+002-claude-craftdriver,claude,craftdriver,true,36884,19701,34060,,,,0.0405851,135386,124201,10520,11185,1292,0,136678,3,3,7,15654,1700,0

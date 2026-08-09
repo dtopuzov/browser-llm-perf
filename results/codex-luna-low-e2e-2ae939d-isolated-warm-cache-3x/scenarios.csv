@@ -1,5 +1,0 @@
-taskId,batchId,driver,successful,runs,wallTimeMsMedian,agentApiDurationMsMedian,costUsdMedian,aiCreditsMedian,inputTokensMedian,cachedInputTokensMedian,cacheCreationInputTokensMedian,uncachedInputTokensMedian,outputTokensMedian,totalTokensMedian,browserToolTurnsMedian,browserCallsMedian,failedBrowserInvocationsMedian,browserCommandDurationMsMedian,browserOutputBytesMedian
-wikipedia-telerik,codex-luna-low-e2e-2ae939d-isolated-warm-cache-3x-01-wikipedia-telerik,playwright,3,3,69831,,,,211129,184064,0,37515,1108,212237,7,7,0,27458,122912
-wikipedia-telerik,codex-luna-low-e2e-2ae939d-isolated-warm-cache-3x-01-wikipedia-telerik,craftdriver,3,3,49438,,,,88868,70400,0,18468,725,89593,4,6,0,18638,5638
-github-login-error,codex-luna-low-e2e-2ae939d-isolated-warm-cache-3x-02-github-login-error,craftdriver,3,3,40656,,,,70810,40192,0,31642,652,71462,3,5,0,12900,3653
-github-login-error,codex-luna-low-e2e-2ae939d-isolated-warm-cache-3x-02-github-login-error,playwright,3,3,60132,,,,106246,71424,0,34826,889,107135,5,8,0,19194,5220

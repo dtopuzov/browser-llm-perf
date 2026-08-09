@@ -1,110 +1,98 @@
 # Browser LLM Perf
 
-Which browser CLI helps an AI agent finish real browser work faster and with
-fewer tokens?
+Which browser CLI helps an AI agent finish real browser work faster and at
+lower model cost?
 
 This repository compares [CraftDriver](https://github.com/dtopuzov/craftdriver)
 and [Playwright CLI](https://playwright.dev/) in isolated end-to-end runs with
-Codex CLI and Claude Code.
+Codex CLI, Claude Code, and GitHub Copilot CLI.
 
-**CraftDriver leads with both agents.** Each driver finished 12/12 trials
-correctly, so the differences are efficiency, not capability.
+**Latest result: CraftDriver won with all three agents.** All 12 driver trials
+were correct (6 CraftDriver, 6 Playwright), so the differences below measure
+efficiency rather than task completion.
 
-## Results
+## Latest deterministic result
 
-Three runs per driver, per scenario, per agent, against CraftDriver `2ae939d`.
-Wall time is the mean of the two scenario medians; token and cost figures use
-the same aggregation. Diff is CraftDriver relative to Playwright, so negative
-is better for CraftDriver.
+Two runs per driver and agent used the local `local-search-telerik` fixture.
+Trials ran sequentially with rotated driver order against CraftDriver `1.13.0`
+at commit `996e1f794ad7a74af67e002bd6c26e15e08b49c3`. Both drivers used installed
+Google Chrome `151.0.7922.108`; CraftDriver used ChromeDriver `151.0.7922.77`
+with a validated major-version match.
 
-The two CLIs expose different usage fields: Codex reports tokens but no cost,
-Claude Code reports both. Missing values are never estimated, so each table
-lists what its agent actually reports.
+Negative differences mean CraftDriver used less:
 
-Both tables also carry **browser output**: the bytes each driver returned into
-the conversation across a run, counted by the harness from the agent's own tool
-results. That is the input the driver actually controls — everything else in the
-prompt is the agent's own scaffolding. Each CLI surfaces tool results in its own
-shape, so compare byte counts down a column, within one agent, not across the
-two tables.
+| Agent and model | Cost measure | CraftDriver | Playwright | Cost diff | Wall diff | Token/output diff |
+| --- | --- | ---: | ---: | ---: | ---: | ---: |
+| Codex, GPT-5.6 Luna low | API-equivalent estimate | **$0.0092** | $0.0127 | **-27.5%** | **-47.1%** | **-61.4% total tokens** |
+| Claude, Haiku 4.5 low | CLI-reported USD | **$0.0606** | $0.0664 | **-8.7%** | **-32.4%** | **-53.2% total tokens** |
+| Copilot, GPT-5.6 Luna low | AI Credits | **0.6819** | 0.9364 | **-27.2%** | **-26.7%** | **-26.5% output tokens** |
 
-### Codex CLI `gpt-5.6-luna`, reasoning low
+Codex does not report cost, so its estimate applies the current GPT-5.6 Luna
+rates—$0.20/M uncached input, $0.02/M cached input, and $1.20/M output—to the
+reported median token counts. See the
+[official model page](https://developers.openai.com/api/docs/models/gpt-5.6-luna).
+Copilot CLI does not expose input/cache token totals, so its own AI Credits are
+the available cost measure. Missing provider fields are not estimated.
 
-| Metric | CraftDriver | Playwright | Diff |
-| --- | ---: | ---: | ---: |
-| Wall time | **45.05s** | 64.98s | **-30.7%** |
-| Wall time — Wikipedia | **49.44s** | 69.83s | **-29.2%** |
-| Wall time — GitHub | **40.66s** | 60.13s | **-32.4%** |
-| Browser-command time | **15.77s** | 23.33s | **-32.4%** |
-| Browser output | **4,646 B** | 64,066 B | **-92.7%** |
-| Input tokens | **79,839** | 158,688 | **-49.7%** |
-| Output tokens | **689** | 999 | **-31.0%** |
-| Total tokens | **80,528** | 159,686 | **-49.6%** |
+### Detailed medians
 
-### Claude Code `claude-haiku-4-5`, reasoning low
+| Agent | Driver | Correct | Wall | Cached input | Uncached input | Output | Browser turns | CLI calls | Driver time |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Codex | CraftDriver | 2/2 | **41.51s** | **32,128** | **38,404** | **722** | **3.0** | **6.0** | **13.44s** |
+| Codex | Playwright | 2/2 | 78.40s | 142,336 | 40,883 | 1,373 | 10.0 | 10.0 | 24.59s |
+| Claude | CraftDriver | 2/2 | **38.49s** | **130,435** | 20,346 | **1,507** | **3.5** | **6.5** | **15.24s** |
+| Claude | Playwright | 2/2 | 56.92s | 309,823 | **13,961** | 1,643 | 9.0 | 9.0 | 23.83s |
+| Copilot | CraftDriver | 2/2 | **40.26s** | n/a | n/a | **372** | **3.0** | **6.0** | **13.55s** |
+| Copilot | Playwright | 2/2 | 54.91s | n/a | n/a | 506 | 7.5 | 8.5 | 23.34s |
 
-| Metric | CraftDriver | Playwright | Diff |
-| --- | ---: | ---: | ---: |
-| Wall time | **42.34s** | 58.32s | **-27.4%** |
-| Wall time — Wikipedia | **44.70s** | 62.88s | **-28.9%** |
-| Wall time — GitHub | **39.97s** | 53.77s | **-25.7%** |
-| Browser-command time | **14.14s** | 22.81s | **-38.0%** |
-| Browser output | **4,641 B** | 6,359 B | **-27.0%** |
-| Input tokens | **233,495** | 369,849 | **-36.9%** |
-| Output tokens | **1,621** | 1,929 | **-16.0%** |
-| Total tokens | **235,121** | 371,681 | **-36.7%** |
-| Cost | **$0.0554** | $0.0764 | **-27.5%** |
+Claude is the important nuance: CraftDriver's median total and reported cost
+were lower, but its uncached input was 45.7% higher. With only two runs and a
+wide $0.0406–$0.0806 CraftDriver cost range, the exact 8.7% cost lead is
+directional, not a stable estimate.
 
-Input tokens are cumulative across turns, so a large early snapshot is re-sent
-on every later turn. That is why a 1.7 KB difference in returned bytes lands as
-a 136,000-token difference in billed input: with Codex the effect is larger
-still, where Playwright's 122,912 B Wikipedia snapshot drives its input tokens
-to twice CraftDriver's.
+The command-shape improvement did what it was intended to do. Once a result ref
+was discovered, CraftDriver agents grouped the click, evidence reads,
+screenshot, and shutdown. CraftDriver therefore needed three browser tool turns
+in five of six runs; the remaining Claude run needed four. It still made six or
+seven real CLI calls—the optimization removed model round trips, not checks.
 
-## Distribution
+One Codex Playwright run tried the unsupported `open --headless`, recovered, and
+completed correctly. That added one failed CLI call and 1.87 seconds. It is
+retained rather than cherry-picked; removing that command would not explain the
+36.89-second median wall gap.
 
-In three of the four agent/scenario pairs the distributions do not overlap at
-all — CraftDriver's slowest run beat Playwright's fastest:
+## GitHub-only historical result
 
-| Agent | Scenario | CraftDriver runs (s) | Playwright runs (s) |
-| --- | --- | --- | --- |
-| Codex | GitHub | 36.08 / 40.66 / 54.32 | 56.22 / 60.13 / 60.49 |
-| Claude | Wikipedia | 40.22 / 44.70 / 46.56 | 58.26 / 62.88 / 71.62 |
-| Claude | GitHub | 39.15 / 39.97 / 43.69 | 51.45 / 53.77 / 54.66 |
+Wikipedia was not the reason CraftDriver led in the earlier live-site suite.
+The GitHub login-error scenario alone produced these medians with CraftDriver
+`1.10.0` at `2ae939d` (three runs per driver):
 
-Codex on Wikipedia is the exception: CraftDriver ran 42.86 / 49.44 / 57.80
-against Playwright's 52.51 / 69.83 / 73.10, so the slowest CraftDriver run lost
-to the fastest Playwright run.
+| Agent | Correct | Wall diff | Total-token diff | Output diff | Cost diff |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Codex, GPT-5.6 Luna low | 6/6 | **-32.4%** | **-33.3%** | **-26.7%** | n/a |
+| Claude, Haiku 4.5 low | 6/6 | **-25.7%** | **-35.1%** | **-14.7%** | **-26.7% USD** |
+| Copilot, GPT-5.4 medium | 6/6 | **-34.0%** | n/a | **-35.2%** | **-16.9% AI Credits** |
 
-## Reliability
+Those GitHub results and the new deterministic results point in the same
+direction. The latest local search run now also restores the clear total-token
+lead that was missing from the first v1.13 Codex check.
 
-Neither driver made a failed CLI call in any of the 24 trials.
-
-## Method
-
-The suite contains two live E2E scenarios:
-
-- Wikipedia: search for Telerik and verify the destination article.
-- GitHub: submit synthetic invalid credentials and verify the authentication
-  error.
+## Method and limits
 
 Every measured trial starts a fresh agent session, home/config, workspace,
-browser profile, browser process, and driver process. Trials run sequentially
-with alternating driver order. Correctness requires the expected structured
-answer and a final screenshot. The headline gives both scenarios equal weight
-by averaging their medians.
+browser profile, browser process, and driver process. Trials run sequentially;
+correctness requires the expected structured answer and a final screenshot.
+The driver skill is the command reference for each fixture, and all fixtures
+share the same no-global-help rule.
 
-Both drivers use installed Google Chrome 150.0.7871.187. Before preflight, the
-harness resolves the exact ChromeDriver CraftDriver will launch, records both
-executable paths and versions, and aborts on a Chrome/ChromeDriver major
-mismatch. Browser binaries are warmed before measurement; browser state and
-agent history are not reused. Raw streams, command logs, timings, and
-screenshots remain local, while curated reports and machine-readable aggregates
-are published.
+Raw JSON/JSONL, stderr, answers, timings, command transcripts, workspaces, and
+screenshots remain local for every final trial. The repository publishes the
+curated reports, manifests, aggregates, and CSVs.
 
-All 24 trials passed their structured-answer checks and produced a final
-screenshot. Live sites and three-run samples make the percentages directional
-rather than definitive.
+This is a fast two-run regression check on one deterministic search flow, not a
+precise population estimate. Further prompt tuning against this exact task
+would risk overfitting; the next useful evidence would be more task shapes
+(multi-step form, delayed state, or navigation), not more task-specific hints.
 
 ## Run it
 
@@ -115,31 +103,30 @@ CraftDriver checkout at `../craftdriver`.
 npm ci
 npm run skills:install
 
-npm run bench:e2e -- \
+npm run bench -- \
   --agent codex \
   --model gpt-5.6-luna \
   --reasoning low \
   --driver playwright,craftdriver \
-  --runs 3
-
-npm run bench:e2e -- \
-  --agent claude \
-  --model claude-haiku-4-5-20251001 \
-  --reasoning low \
-  --driver playwright,craftdriver \
-  --runs 3
+  --task local-search-telerik \
+  --runs 2
 ```
 
-For driver-only measurements without an LLM:
+Use `--agent claude --model claude-haiku-4-5-20251001` or
+`--agent copilot --model gpt-5.6-luna` for the other two batches.
 
-```bash
-npm run bench:cli -- --runs 3
-```
-
-## More evidence
+## Evidence
 
 - [Full analysis](ANALYSIS.md)
-- [Codex suite report](results/codex-luna-low-e2e-2ae939d-isolated-warm-cache-3x/report.md)
-  · [aggregate JSON](results/codex-luna-low-e2e-2ae939d-isolated-warm-cache-3x/aggregate.json)
-- [Claude suite report](results/claude-haiku45-low-e2e-2ae939d-isolated-warm-cache-3x/report.md)
-  · [aggregate JSON](results/claude-haiku45-low-e2e-2ae939d-isolated-warm-cache-3x/aggregate.json)
+- Codex: [report](results/codex-luna-low-local-search-craftdriver-v113-final-2x/report.md)
+  · [aggregate](results/codex-luna-low-local-search-craftdriver-v113-final-2x/aggregate.json)
+  · [manifest](results/codex-luna-low-local-search-craftdriver-v113-final-2x/manifest.json)
+- Claude: [report](results/claude-haiku45-low-local-search-craftdriver-v113-final-2x/report.md)
+  · [aggregate](results/claude-haiku45-low-local-search-craftdriver-v113-final-2x/aggregate.json)
+  · [manifest](results/claude-haiku45-low-local-search-craftdriver-v113-final-2x/manifest.json)
+- Copilot: [report](results/copilot-luna-low-local-search-craftdriver-v113-final-2x/report.md)
+  · [aggregate](results/copilot-luna-low-local-search-craftdriver-v113-final-2x/aggregate.json)
+  · [manifest](results/copilot-luna-low-local-search-craftdriver-v113-final-2x/manifest.json)
+- Historical GitHub-only reports: [Codex](results/codex-luna-low-e2e-2ae939d-isolated-warm-cache-3x-02-github-login-error/report.md)
+  · [Claude](results/claude-haiku45-low-e2e-2ae939d-isolated-warm-cache-3x-02-github-login-error/report.md)
+  · [Copilot](results/copilot-gpt54-medium-e2e-2ae939d-isolated-warm-cache-3x-02-github-login-error/report.md)

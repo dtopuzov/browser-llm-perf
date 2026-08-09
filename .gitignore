@@ -32,28 +32,49 @@ blob-report/
 # screenshots, browser profiles, temporary paths, and copied workspaces.
 results/**
 
-# Publish only the curated summaries for the current batch. Superseded batches
-# are removed from source control; their raw evidence stays local.
-!results/copilot-gpt54-medium-e2e-2ae939d-isolated-warm-cache-3x*/
-results/copilot-gpt54-medium-e2e-2ae939d-isolated-warm-cache-3x*/*
-!results/copilot-gpt54-medium-e2e-2ae939d-isolated-warm-cache-3x*/manifest.json
-!results/copilot-gpt54-medium-e2e-2ae939d-isolated-warm-cache-3x*/report.md
-!results/copilot-gpt54-medium-e2e-2ae939d-isolated-warm-cache-3x*/aggregate.json
-!results/copilot-gpt54-medium-e2e-2ae939d-isolated-warm-cache-3x*/runs.csv
-!results/copilot-gpt54-medium-e2e-2ae939d-isolated-warm-cache-3x*/scenarios.csv
+# Publish only curated summaries for the latest deterministic search batches.
+# Raw evidence remains beside them locally and stays ignored.
+!results/codex-luna-low-local-search-craftdriver-v113-final-2x/
+results/codex-luna-low-local-search-craftdriver-v113-final-2x/*
+!results/codex-luna-low-local-search-craftdriver-v113-final-2x/manifest.json
+!results/codex-luna-low-local-search-craftdriver-v113-final-2x/report.md
+!results/codex-luna-low-local-search-craftdriver-v113-final-2x/aggregate.json
+!results/codex-luna-low-local-search-craftdriver-v113-final-2x/runs.csv
 
-!results/codex-luna-low-e2e-2ae939d-isolated-warm-cache-3x*/
-results/codex-luna-low-e2e-2ae939d-isolated-warm-cache-3x*/*
-!results/codex-luna-low-e2e-2ae939d-isolated-warm-cache-3x*/manifest.json
-!results/codex-luna-low-e2e-2ae939d-isolated-warm-cache-3x*/report.md
-!results/codex-luna-low-e2e-2ae939d-isolated-warm-cache-3x*/aggregate.json
-!results/codex-luna-low-e2e-2ae939d-isolated-warm-cache-3x*/runs.csv
-!results/codex-luna-low-e2e-2ae939d-isolated-warm-cache-3x*/scenarios.csv
+!results/claude-haiku45-low-local-search-craftdriver-v113-final-2x/
+results/claude-haiku45-low-local-search-craftdriver-v113-final-2x/*
+!results/claude-haiku45-low-local-search-craftdriver-v113-final-2x/manifest.json
+!results/claude-haiku45-low-local-search-craftdriver-v113-final-2x/report.md
+!results/claude-haiku45-low-local-search-craftdriver-v113-final-2x/aggregate.json
+!results/claude-haiku45-low-local-search-craftdriver-v113-final-2x/runs.csv
 
-!results/claude-haiku45-low-e2e-2ae939d-isolated-warm-cache-3x*/
-results/claude-haiku45-low-e2e-2ae939d-isolated-warm-cache-3x*/*
-!results/claude-haiku45-low-e2e-2ae939d-isolated-warm-cache-3x*/manifest.json
-!results/claude-haiku45-low-e2e-2ae939d-isolated-warm-cache-3x*/report.md
-!results/claude-haiku45-low-e2e-2ae939d-isolated-warm-cache-3x*/aggregate.json
-!results/claude-haiku45-low-e2e-2ae939d-isolated-warm-cache-3x*/runs.csv
-!results/claude-haiku45-low-e2e-2ae939d-isolated-warm-cache-3x*/scenarios.csv
+!results/copilot-luna-low-local-search-craftdriver-v113-final-2x/
+results/copilot-luna-low-local-search-craftdriver-v113-final-2x/*
+!results/copilot-luna-low-local-search-craftdriver-v113-final-2x/manifest.json
+!results/copilot-luna-low-local-search-craftdriver-v113-final-2x/report.md
+!results/copilot-luna-low-local-search-craftdriver-v113-final-2x/aggregate.json
+!results/copilot-luna-low-local-search-craftdriver-v113-final-2x/runs.csv
+
+# Keep the earlier GitHub-only summaries because they show that the result was
+# not created solely by the Wikipedia scenario. The superseded suite-level and
+# Wikipedia summaries are removed from source control.
+!results/codex-luna-low-e2e-2ae939d-isolated-warm-cache-3x-02-github-login-error/
+results/codex-luna-low-e2e-2ae939d-isolated-warm-cache-3x-02-github-login-error/*
+!results/codex-luna-low-e2e-2ae939d-isolated-warm-cache-3x-02-github-login-error/manifest.json
+!results/codex-luna-low-e2e-2ae939d-isolated-warm-cache-3x-02-github-login-error/report.md
+!results/codex-luna-low-e2e-2ae939d-isolated-warm-cache-3x-02-github-login-error/aggregate.json
+!results/codex-luna-low-e2e-2ae939d-isolated-warm-cache-3x-02-github-login-error/runs.csv
+
+!results/claude-haiku45-low-e2e-2ae939d-isolated-warm-cache-3x-02-github-login-error/
+results/claude-haiku45-low-e2e-2ae939d-isolated-warm-cache-3x-02-github-login-error/*
+!results/claude-haiku45-low-e2e-2ae939d-isolated-warm-cache-3x-02-github-login-error/manifest.json
+!results/claude-haiku45-low-e2e-2ae939d-isolated-warm-cache-3x-02-github-login-error/report.md
+!results/claude-haiku45-low-e2e-2ae939d-isolated-warm-cache-3x-02-github-login-error/aggregate.json
+!results/claude-haiku45-low-e2e-2ae939d-isolated-warm-cache-3x-02-github-login-error/runs.csv
+
+!results/copilot-gpt54-medium-e2e-2ae939d-isolated-warm-cache-3x-02-github-login-error/
+results/copilot-gpt54-medium-e2e-2ae939d-isolated-warm-cache-3x-02-github-login-error/*
+!results/copilot-gpt54-medium-e2e-2ae939d-isolated-warm-cache-3x-02-github-login-error/manifest.json
+!results/copilot-gpt54-medium-e2e-2ae939d-isolated-warm-cache-3x-02-github-login-error/report.md
+!results/copilot-gpt54-medium-e2e-2ae939d-isolated-warm-cache-3x-02-github-login-error/aggregate.json
+!results/copilot-gpt54-medium-e2e-2ae939d-isolated-warm-cache-3x-02-github-login-error/runs.csv
