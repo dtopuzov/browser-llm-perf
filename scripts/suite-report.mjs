@@ -133,6 +133,9 @@ function provenanceSnapshot(childManifest) {
     snapshot.craftdriverWorktreeDiffSha256 = versions.craftdriverWorktreeDiffSha256;
     snapshot.craftdriverSkillManifest = versions.craftdriverSkillManifest;
     snapshot.craftdriverChrome = versions.chrome?.numericVersion ?? versions.chrome?.version;
+    snapshot.craftdriverChromeDriver = versions.craftdriverBrowser?.chromedriver?.version;
+    snapshot.craftdriverChromeDriverExecutable = versions.craftdriverBrowser?.chromedriver?.executable;
+    snapshot.craftdriverChromeDriverMajorMatch = versions.craftdriverBrowser?.majorMatch;
   }
   if (drivers.includes('vibium')) {
     snapshot.vibium = versions.vibium;

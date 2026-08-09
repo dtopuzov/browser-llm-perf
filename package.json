@@ -16,6 +16,7 @@
     "node": ">=20"
   },
   "scripts": {
+    "test": "node --test scripts/*.test.mjs",
     "browser": "playwright cli",
     "browser:mcp": "playwright mcp --headless --isolated --browser chrome --output-mode file --codegen none",
     "skills:install": "node scripts/install-skills.mjs",

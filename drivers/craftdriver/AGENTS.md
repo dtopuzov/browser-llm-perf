@@ -2,6 +2,7 @@
 
 - This is one isolated benchmark trial. Do not use subagents or delegate the task.
 - Load and follow `.agents/skills/craftdriver/SKILL.md`.
+- Treat that installed skill as the command reference. Do not run the CLI's global `--help`; if required syntax is absent, use only the narrowest command-specific help.
 - Use only the repository-local CLI through `npx --no-install craftdriver` for browser interaction.
 - Chrome is already installed. Never run `npm install`, download a browser/driver manually, or switch to another browser. The first browser command must include `--browser chrome --headless`; later commands must reuse that session.
 - Use only Google Chrome. Do not launch Chromium, Firefox, or Safari.

@@ -1,0 +1,612 @@
+{
+  "batchId": "claude-haiku45-low-local-search-craftdriver-v113-final-2x",
+  "createdAt": "2026-08-09T18:08:26.293Z",
+  "options": {
+    "agent": "claude",
+    "drivers": [
+      "playwright",
+      "craftdriver"
+    ],
+    "task": "local-search-telerik",
+    "runs": 2,
+    "model": "claude-haiku-4-5-20251001",
+    "reasoning": "low",
+    "seed": 43,
+    "timeoutMs": 600000,
+    "batchId": "claude-haiku45-low-local-search-craftdriver-v113-final-2x",
+    "yolo": true,
+    "headed": false
+  },
+  "task": {
+    "id": "local-search-telerik",
+    "description": "Deterministic local search flow used for primary token and latency comparisons.",
+    "fixture": "search",
+    "promptTemplate": "Use the {{DRIVER_SKILL}} skill and {{DRIVER_LABEL}} CLI for every browser interaction. Open a fresh {{BROWSER_MODE}} Chrome session, navigate to {{BASE_URL}}/, use the visible search form to search for Telerik, open the first result, and return its page heading and current URL as title and url. Do not navigate directly to a result URL. Immediately before closing, capture the final visible page as final-screenshot.png using {{DRIVER_LABEL}}. Close the browser session before answering.",
+    "expected": {
+      "title": "Telerik",
+      "urlPath": "/articles/telerik.html"
+    },
+    "outputSchema": "schemas/browser-result.schema.json"
+  },
+  "fixtureBaseUrl": "http://127.0.0.1:65386",
+  "versions": {
+    "agent": "2.1.220 (Claude Code)",
+    "codex": "codex-cli 0.146.0",
+    "playwright": "1.62.0",
+    "craftdriver": "1.13.0",
+    "craftdriverGitSha": "996e1f794ad7a74af67e002bd6c26e15e08b49c3",
+    "craftdriverGitDirty": false,
+    "craftdriverWorktreeDiffSha256": null,
+    "craftdriverSkillManifest": {
+      "schemaVersion": 1,
+      "craftdriverVersion": "1.13.0",
+      "files": {
+        "SKILL.md": "845f1b0cfdbd4744f2e1dd9f2ea3f7f81db4a1359b1e6ea90c77528d2f4234bf",
+        "agents/openai.yaml": "a0399821a95dd066d296aee28bee9b6ccf2ac48de4597b3f6a665f8b349118a6",
+        "cheatsheet.md": "aa82c8fd8ba05aab242bd3538db54ede44ec998b5d32d917c253470002093c30",
+        "cli.md": "b2ff7e9be3396677caa66da9dee17696cdeaf2ff2c381280e6102b51848995f9",
+        "patterns.md": "3b1feded6f5e7f79d044626cb8ed37eef80bae993568de05875fedef7f1628d0",
+        "workflow.md": "5e6dc3ad820dbfa66259dd338f7f4892525859e4ba25c714e6ab134cf772d038"
+      }
+    },
+    "vibium": "26.5.31",
+    "vibiumSkill": {
+      "name": "vibe-check",
+      "source": "https://github.com/VibiumDev/vibium/tree/b0f372ccd3ec895c4bf78d43ac9fb8eaba767a67/skills/vibe-check",
+      "sourceCommit": "b0f372ccd3ec895c4bf78d43ac9fb8eaba767a67",
+      "sha256": "127ef0f29722873157a62ec3c563963709573780f4a522469e27baf01f98653c"
+    },
+    "chrome": {
+      "executable": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+      "version": "Google Chrome 151.0.7922.108",
+      "numericVersion": "151.0.7922.108"
+    },
+    "craftdriverBrowser": {
+      "source": "CraftDriver resolved local browser/driver pair",
+      "chrome": {
+        "source": "installed Google Chrome",
+        "executable": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+        "version": "Google Chrome 151.0.7922.108",
+        "numericVersion": "151.0.7922.108"
+      },
+      "chromedriver": {
+        "source": "CraftDriver resolution",
+        "executable": "/Users/admin/.cache/craftdriver/chromedriver/151.0.7922.108/mac-x64/chromedriver",
+        "version": "151.0.7922.77"
+      },
+      "chromeMajor": 151,
+      "chromedriverMajor": 151,
+      "majorMatch": true
+    },
+    "vibiumBrowser": null
+  },
+  "preflight": {
+    "playwright": {
+      "passed": true,
+      "commands": [
+        {
+          "command": [
+            "/Users/admin/git/browser-llm-perf-provenance-fix/node_modules/.bin/playwright",
+            "cli",
+            "-s=llm-perf-preflight-86200",
+            "open",
+            "http://127.0.0.1:65386"
+          ],
+          "code": 0,
+          "signal": null,
+          "timedOut": false,
+          "spawnError": null,
+          "stdout": "### Browser `llm-perf-preflight-86200` opened with pid 86369.\n### Page\n- Page URL: http://127.0.0.1:65386/\n- Page Title: Knowledge Search\n- Console: 1 errors, 0 warnings\n### Snapshot\n- [Snapshot](.playwright/output/page-2026-08-09T18-08-15-631Z.yml)\n### Events\n- New console entries: .playwright/output/console-2026-08-09T18-08-15-343Z.log#L1\n",
+          "stderr": "",
+          "wallTimeMs": 4712
+        },
+        {
+          "command": [
+            "/Users/admin/git/browser-llm-perf-provenance-fix/node_modules/.bin/playwright",
+            "cli",
+            "-s=llm-perf-preflight-86200",
+            "snapshot"
+          ],
+          "code": 0,
+          "signal": null,
+          "timedOut": false,
+          "spawnError": null,
+          "stdout": "### Page\n- Page URL: http://127.0.0.1:65386/\n- Page Title: Knowledge Search\n- Console: 1 errors, 0 warnings\n### Snapshot\n```yaml\n- main [ref=e2]:\n  - heading \"Knowledge Search\" [level=1] [ref=e3]\n  - search [ref=e4]:\n    - generic [ref=e5]: Search the knowledge base\n    - searchbox \"Search the knowledge base\" [ref=e6]\n    - button \"Search\" [ref=e7]\n```\n",
+          "stderr": "",
+          "wallTimeMs": 1051
+        },
+        {
+          "command": [
+            "/Users/admin/git/browser-llm-perf-provenance-fix/node_modules/.bin/playwright",
+            "cli",
+            "-s=llm-perf-preflight-86200",
+            "close"
+          ],
+          "code": 0,
+          "signal": null,
+          "timedOut": false,
+          "spawnError": null,
+          "stdout": "Browser 'llm-perf-preflight-86200' closed\n\n",
+          "stderr": "",
+          "wallTimeMs": 1126
+        },
+        {
+          "command": [
+            "/Users/admin/git/browser-llm-perf-provenance-fix/node_modules/.bin/playwright",
+            "cli",
+            "close-all"
+          ],
+          "code": 0,
+          "signal": null,
+          "timedOut": false,
+          "spawnError": null,
+          "stdout": "",
+          "stderr": "",
+          "wallTimeMs": 976
+        },
+        {
+          "command": [
+            "/Users/admin/git/browser-llm-perf-provenance-fix/node_modules/.bin/playwright",
+            "cli",
+            "kill-all"
+          ],
+          "code": 0,
+          "signal": null,
+          "timedOut": false,
+          "spawnError": null,
+          "stdout": "No daemon processes found.\n",
+          "stderr": "",
+          "wallTimeMs": 1340
+        }
+      ]
+    },
+    "craftdriver": {
+      "passed": true,
+      "commands": [
+        {
+          "command": [
+            "/Users/admin/git/browser-llm-perf-provenance-fix/node_modules/.bin/craftdriver",
+            "go",
+            "http://127.0.0.1:65386",
+            "--browser",
+            "chrome",
+            "--headless",
+            "--session",
+            "llm-perf-preflight-86200"
+          ],
+          "code": 0,
+          "signal": null,
+          "timedOut": false,
+          "spawnError": null,
+          "stdout": "{\"ok\":true,\"result\":{\"title\":\"Knowledge Search\",\"url\":\"http://127.0.0.1:65386/\"}}\n",
+          "stderr": "",
+          "wallTimeMs": 3995
+        },
+        {
+          "command": [
+            "/Users/admin/git/browser-llm-perf-provenance-fix/node_modules/.bin/craftdriver",
+            "snapshot",
+            "--session",
+            "llm-perf-preflight-86200"
+          ],
+          "code": 0,
+          "signal": null,
+          "timedOut": false,
+          "spawnError": null,
+          "stdout": "{\"ok\":true,\"result\":{\"url\":\"http://127.0.0.1:65386/\",\"title\":\"Knowledge Search\",\"lines\":[\"e1: main (container)\",\"  e2: heading \\\"Knowledge Search\\\" [level=1]\",\"  e3: search (container) #search-form\",\"    e4: label \\\"Search the knowledge base\\\"\",\"    e5: searchbox \\\"Search the knowledge base\\\" #query\",\"    e6: button \\\"Search\\\"\"],\"documentId\":\"d1-6uy5mzxd\",\"revision\":1}}\n",
+          "stderr": "",
+          "wallTimeMs": 466
+        },
+        {
+          "command": [
+            "/Users/admin/git/browser-llm-perf-provenance-fix/node_modules/.bin/craftdriver",
+            "session",
+            "close",
+            "llm-perf-preflight-86200"
+          ],
+          "code": 0,
+          "signal": null,
+          "timedOut": false,
+          "spawnError": null,
+          "stdout": "{\"ok\":true,\"result\":{\"closed\":true,\"name\":\"llm-perf-preflight-86200\"}}\n",
+          "stderr": "",
+          "wallTimeMs": 494
+        },
+        {
+          "command": [
+            "/Users/admin/git/browser-llm-perf-provenance-fix/node_modules/.bin/craftdriver",
+            "daemon",
+            "stop"
+          ],
+          "code": 0,
+          "signal": null,
+          "timedOut": false,
+          "spawnError": null,
+          "stdout": "daemon stopped\n",
+          "stderr": "",
+          "wallTimeMs": 432
+        }
+      ]
+    }
+  },
+  "agentPreflight": {
+    "status": "passed",
+    "measured": false,
+    "purpose": "Refresh and validate the credential before isolated measured trials.",
+    "credentialSource": "macOS keychain",
+    "startedAt": "2026-08-09T18:08:03.414Z",
+    "endedAt": "2026-08-09T18:08:07.990Z",
+    "model": "claude-haiku-4-5-20251001",
+    "reasoning": "low",
+    "exitCode": 0,
+    "signal": null,
+    "timedOut": false,
+    "wallTimeMs": 4462,
+    "responseIsError": false,
+    "responseMatched": true,
+    "reportedCostUsd": 0.0150619,
+    "usage": {
+      "input_tokens": 10,
+      "cache_creation_input_tokens": 6519,
+      "cache_read_input_tokens": 11609,
+      "output_tokens": 55,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6519,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 10,
+          "output_tokens": 55,
+          "cache_read_input_tokens": 11609,
+          "cache_creation_input_tokens": 6519,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6519
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "keychainTokenExpiresAt": "2026-08-10T01:44:18.470Z"
+  },
+  "schedule": [
+    {
+      "trial": 1,
+      "driver": "craftdriver"
+    },
+    {
+      "trial": 1,
+      "driver": "playwright"
+    },
+    {
+      "trial": 2,
+      "driver": "playwright"
+    },
+    {
+      "trial": 2,
+      "driver": "craftdriver"
+    }
+  ],
+  "runs": [
+    {
+      "runId": "001-claude-craftdriver",
+      "agent": "claude",
+      "driver": "craftdriver",
+      "task": "local-search-telerik",
+      "successful": true,
+      "infrastructure": {
+        "exitCode": 0,
+        "timedOut": false,
+        "answerParseError": null,
+        "screenshotCaptured": true
+      },
+      "correctness": {
+        "passed": true,
+        "checks": {
+          "title": true,
+          "urlPath": true
+        }
+      },
+      "answer": {
+        "title": "Telerik",
+        "url": "http://127.0.0.1:65386/articles/telerik.html"
+      },
+      "timing": {
+        "wallTimeMs": 40102,
+        "firstBrowserCommandMs": 13834,
+        "browserCommandDurationMs": 14817,
+        "agentApiDurationMs": 23738,
+        "agentReportedSessionDurationMs": 37112
+      },
+      "usage": {
+        "inputTokens": 166175,
+        "cachedInputTokens": 136668,
+        "cacheCreationInputTokens": 28835,
+        "outputTokens": 1721,
+        "reasoningOutputTokens": 0,
+        "aiCreditNanoUnits": null,
+        "aiCredits": null,
+        "premiumRequests": null,
+        "costUsd": 0.0806138,
+        "modelUsage": {
+          "claude-haiku-4-5-20251001": {
+            "inputTokens": 672,
+            "outputTokens": 1721,
+            "cacheReadInputTokens": 136668,
+            "cacheCreationInputTokens": 28835,
+            "webSearchRequests": 0,
+            "costUSD": 0.0806138,
+            "contextWindow": 200000,
+            "maxOutputTokens": 32000,
+            "canonicalModel": "claude-haiku-4-5",
+            "provider": "firstParty"
+          }
+        },
+        "uncachedInputTokens": 29507,
+        "totalTokens": 167896
+      },
+      "commands": {
+        "agentToolTurns": 4,
+        "browserToolTurns": 4,
+        "browserInvocations": 6,
+        "failedToolTurns": 0,
+        "failedBrowserInvocations": 0,
+        "total": 4,
+        "browser": 6,
+        "failed": 0,
+        "browserDurationMs": 14817,
+        "browserOutputBytes": 1600,
+        "allOutputBytes": 1600,
+        "firstBrowserCommandMs": 13834,
+        "agentApiDurationMs": 23738,
+        "agentReportedSessionDurationMs": 37112
+      },
+      "bytes": {
+        "agentEvents": 56952,
+        "agentStderr": 0
+      }
+    },
+    {
+      "runId": "001-claude-playwright",
+      "agent": "claude",
+      "driver": "playwright",
+      "task": "local-search-telerik",
+      "successful": true,
+      "infrastructure": {
+        "exitCode": 0,
+        "timedOut": false,
+        "answerParseError": null,
+        "screenshotCaptured": true
+      },
+      "correctness": {
+        "passed": true,
+        "checks": {
+          "title": true,
+          "urlPath": true
+        }
+      },
+      "answer": {
+        "title": "Telerik",
+        "url": "http://127.0.0.1:65386/articles/telerik.html"
+      },
+      "timing": {
+        "wallTimeMs": 57833,
+        "firstBrowserCommandMs": 12640,
+        "browserCommandDurationMs": 23838,
+        "agentApiDurationMs": 31609,
+        "agentReportedSessionDurationMs": 53123
+      },
+      "usage": {
+        "inputTokens": 324810,
+        "cachedInputTokens": 310711,
+        "cacheCreationInputTokens": 13387,
+        "outputTokens": 1787,
+        "reasoningOutputTokens": 0,
+        "aiCreditNanoUnits": null,
+        "aiCredits": null,
+        "premiumRequests": null,
+        "costUsd": 0.0674921,
+        "modelUsage": {
+          "claude-haiku-4-5-20251001": {
+            "inputTokens": 712,
+            "outputTokens": 1787,
+            "cacheReadInputTokens": 310711,
+            "cacheCreationInputTokens": 13387,
+            "webSearchRequests": 0,
+            "costUSD": 0.0674921,
+            "contextWindow": 200000,
+            "maxOutputTokens": 32000,
+            "canonicalModel": "claude-haiku-4-5",
+            "provider": "firstParty"
+          }
+        },
+        "uncachedInputTokens": 14099,
+        "totalTokens": 326597
+      },
+      "commands": {
+        "agentToolTurns": 9,
+        "browserToolTurns": 9,
+        "browserInvocations": 9,
+        "failedToolTurns": 0,
+        "failedBrowserInvocations": 0,
+        "total": 9,
+        "browser": 9,
+        "failed": 0,
+        "browserDurationMs": 23838,
+        "browserOutputBytes": 2471,
+        "allOutputBytes": 2471,
+        "firstBrowserCommandMs": 12640,
+        "agentApiDurationMs": 31609,
+        "agentReportedSessionDurationMs": 53123
+      },
+      "bytes": {
+        "agentEvents": 72743,
+        "agentStderr": 0
+      }
+    },
+    {
+      "runId": "002-claude-playwright",
+      "agent": "claude",
+      "driver": "playwright",
+      "task": "local-search-telerik",
+      "successful": true,
+      "infrastructure": {
+        "exitCode": 0,
+        "timedOut": false,
+        "answerParseError": null,
+        "screenshotCaptured": true
+      },
+      "correctness": {
+        "passed": true,
+        "checks": {
+          "title": true,
+          "urlPath": true
+        }
+      },
+      "answer": {
+        "title": "Telerik",
+        "url": "http://127.0.0.1:65386/articles/telerik.html"
+      },
+      "timing": {
+        "wallTimeMs": 56004,
+        "firstBrowserCommandMs": 10359,
+        "browserCommandDurationMs": 23818,
+        "agentApiDurationMs": 30471,
+        "agentReportedSessionDurationMs": 52728
+      },
+      "usage": {
+        "inputTokens": 322757,
+        "cachedInputTokens": 308935,
+        "cacheCreationInputTokens": 13110,
+        "outputTokens": 1499,
+        "reasoningOutputTokens": 0,
+        "aiCreditNanoUnits": null,
+        "aiCredits": null,
+        "premiumRequests": null,
+        "costUsd": 0.06532050000000002,
+        "modelUsage": {
+          "claude-haiku-4-5-20251001": {
+            "inputTokens": 712,
+            "outputTokens": 1499,
+            "cacheReadInputTokens": 308935,
+            "cacheCreationInputTokens": 13110,
+            "webSearchRequests": 0,
+            "costUSD": 0.06532050000000002,
+            "contextWindow": 200000,
+            "maxOutputTokens": 32000,
+            "canonicalModel": "claude-haiku-4-5",
+            "provider": "firstParty"
+          }
+        },
+        "uncachedInputTokens": 13822,
+        "totalTokens": 324256
+      },
+      "commands": {
+        "agentToolTurns": 9,
+        "browserToolTurns": 9,
+        "browserInvocations": 9,
+        "failedToolTurns": 0,
+        "failedBrowserInvocations": 0,
+        "total": 9,
+        "browser": 9,
+        "failed": 0,
+        "browserDurationMs": 23818,
+        "browserOutputBytes": 2471,
+        "allOutputBytes": 2471,
+        "firstBrowserCommandMs": 10359,
+        "agentApiDurationMs": 30471,
+        "agentReportedSessionDurationMs": 52728
+      },
+      "bytes": {
+        "agentEvents": 67908,
+        "agentStderr": 0
+      }
+    },
+    {
+      "runId": "002-claude-craftdriver",
+      "agent": "claude",
+      "driver": "craftdriver",
+      "task": "local-search-telerik",
+      "successful": true,
+      "infrastructure": {
+        "exitCode": 0,
+        "timedOut": false,
+        "answerParseError": null,
+        "screenshotCaptured": true
+      },
+      "correctness": {
+        "passed": true,
+        "checks": {
+          "title": true,
+          "urlPath": true
+        }
+      },
+      "answer": {
+        "title": "Telerik",
+        "url": "http://127.0.0.1:65386/articles/telerik.html"
+      },
+      "timing": {
+        "wallTimeMs": 36884,
+        "firstBrowserCommandMs": 11244,
+        "browserCommandDurationMs": 15654,
+        "agentApiDurationMs": 19701,
+        "agentReportedSessionDurationMs": 34060
+      },
+      "usage": {
+        "inputTokens": 135386,
+        "cachedInputTokens": 124201,
+        "cacheCreationInputTokens": 10520,
+        "outputTokens": 1292,
+        "reasoningOutputTokens": 0,
+        "aiCreditNanoUnits": null,
+        "aiCredits": null,
+        "premiumRequests": null,
+        "costUsd": 0.0405851,
+        "modelUsage": {
+          "claude-haiku-4-5-20251001": {
+            "inputTokens": 665,
+            "outputTokens": 1292,
+            "cacheReadInputTokens": 124201,
+            "cacheCreationInputTokens": 10520,
+            "webSearchRequests": 0,
+            "costUSD": 0.0405851,
+            "contextWindow": 200000,
+            "maxOutputTokens": 32000,
+            "canonicalModel": "claude-haiku-4-5",
+            "provider": "firstParty"
+          }
+        },
+        "uncachedInputTokens": 11185,
+        "totalTokens": 136678
+      },
+      "commands": {
+        "agentToolTurns": 3,
+        "browserToolTurns": 3,
+        "browserInvocations": 7,
+        "failedToolTurns": 0,
+        "failedBrowserInvocations": 0,
+        "total": 3,
+        "browser": 7,
+        "failed": 0,
+        "browserDurationMs": 15654,
+        "browserOutputBytes": 1700,
+        "allOutputBytes": 1700,
+        "firstBrowserCommandMs": 11244,
+        "agentApiDurationMs": 19701,
+        "agentReportedSessionDurationMs": 34060
+      },
+      "bytes": {
+        "agentEvents": 42429,
+        "agentStderr": 0
+      }
+    }
+  ]
+}

@@ -1,5 +1,0 @@
-taskId,batchId,driver,successful,runs,wallTimeMsMedian,agentApiDurationMsMedian,costUsdMedian,aiCreditsMedian,inputTokensMedian,cachedInputTokensMedian,cacheCreationInputTokensMedian,uncachedInputTokensMedian,outputTokensMedian,totalTokensMedian,browserToolTurnsMedian,browserCallsMedian,failedBrowserInvocationsMedian,browserCommandDurationMsMedian,browserOutputBytesMedian
-wikipedia-telerik,claude-haiku45-low-e2e-2ae939d-isolated-warm-cache-3x-01-wikipedia-telerik,playwright,3,3,62882,36239,0.0823077,,408245,391167,16358,17078,2068,410196,9,9,0,25130,7443
-wikipedia-telerik,claude-haiku45-low-e2e-2ae939d-isolated-warm-cache-3x-01-wikipedia-telerik,craftdriver,3,3,44704,29412,0.0591613,,252454,239343,12524,13213,1714,254168,6,6,0,14230,5633
-github-login-error,claude-haiku45-low-e2e-2ae939d-isolated-warm-cache-3x-02-github-login-error,craftdriver,3,3,39970,24216,0.0516791,,214536,202291,11515,12245,1527,216074,5,5,0,14057,3649
-github-login-error,claude-haiku45-low-e2e-2ae939d-isolated-warm-cache-3x-02-github-login-error,playwright,3,3,53767,32345,0.07048309999999999,,331452,316059,14640,15393,1790,333165,8,8,0,20485,5274

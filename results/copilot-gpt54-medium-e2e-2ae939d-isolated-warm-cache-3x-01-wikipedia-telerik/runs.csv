@@ -1,7 +1,0 @@
-runId,agent,driver,successful,wallTimeMs,agentApiDurationMs,agentReportedSessionDurationMs,aiCredits,aiCreditNanoUnits,premiumRequests,costUsd,inputTokens,cachedInputTokens,cacheCreationInputTokens,uncachedInputTokens,outputTokens,reasoningOutputTokens,totalTokens,agentToolTurns,browserToolTurns,browserCalls,browserCommandDurationMs,browserOutputBytes,failedCommands
-001-copilot-playwright,copilot,playwright,true,57488,20338,49143,12.5313,12531300000,,,,,,,1634,0,,3,3,8,23033,2100,0
-001-copilot-craftdriver,copilot,craftdriver,true,38744,12323,32690,9.3342,9334200000,,,,,,,1198,0,,2,2,6,15551,5745,0
-002-copilot-craftdriver,copilot,craftdriver,true,42166,17486,36036,11.9892,11989200000,,,,,,,1465,0,,5,5,6,15329,5835,0
-002-copilot-playwright,copilot,playwright,true,57224,20702,51145,18.5469,18546900000,,,,,,,2086,0,,3,3,9,25514,967,0
-003-copilot-playwright,copilot,playwright,true,62210,25389,56058,12.9801,12980100000,,,,,,,2561,0,,3,3,8,25633,1488,0
-003-copilot-craftdriver,copilot,craftdriver,true,49506,18659,42648,11.29275,11292750000,,,,,,,1540,0,,5,5,6,21868,5835,0

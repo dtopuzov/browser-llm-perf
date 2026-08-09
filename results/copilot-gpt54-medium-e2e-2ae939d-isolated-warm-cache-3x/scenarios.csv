@@ -1,5 +1,0 @@
-taskId,batchId,driver,successful,runs,wallTimeMsMedian,agentApiDurationMsMedian,costUsdMedian,aiCreditsMedian,inputTokensMedian,cachedInputTokensMedian,cacheCreationInputTokensMedian,uncachedInputTokensMedian,outputTokensMedian,totalTokensMedian,browserToolTurnsMedian,browserCallsMedian,failedBrowserInvocationsMedian,browserCommandDurationMsMedian,browserOutputBytesMedian
-wikipedia-telerik,copilot-gpt54-medium-e2e-2ae939d-isolated-warm-cache-3x-01-wikipedia-telerik,playwright,3,3,57488,20702,,12.9801,,,,,2086,,3,8,0,25514,1488
-wikipedia-telerik,copilot-gpt54-medium-e2e-2ae939d-isolated-warm-cache-3x-01-wikipedia-telerik,craftdriver,3,3,42166,17486,,11.29275,,,,,1465,,5,6,0,15551,5835
-github-login-error,copilot-gpt54-medium-e2e-2ae939d-isolated-warm-cache-3x-02-github-login-error,craftdriver,3,3,47026,17941,,10.6947,,,,,1338,,3,5,0,16733,3596
-github-login-error,copilot-gpt54-medium-e2e-2ae939d-isolated-warm-cache-3x-02-github-login-error,playwright,3,3,71247,22129,,12.8693,,,,,2066,,2,13,1,37233,6995

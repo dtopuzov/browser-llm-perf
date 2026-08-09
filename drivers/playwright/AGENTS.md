@@ -2,6 +2,7 @@
 
 - This is one isolated benchmark trial. Do not use subagents or delegate the task.
 - Load and follow `.agents/skills/playwright-cli/SKILL.md`.
+- Treat that installed skill as the command reference. Do not run the CLI's global `--help`; if required syntax is absent, use only the narrowest command-specific help.
 - Use only the repository-local CLI through `npx --no-install playwright cli` for browser interaction.
 - Chrome is already installed and configured. Never run `playwright install`, `install-browser`, `npm install`, or any other browser/runtime installation command. If Chrome cannot launch, report the failure instead of attempting installation or another browser.
 - Use only the configured Google Chrome channel. Do not launch Chromium, Firefox, or WebKit.

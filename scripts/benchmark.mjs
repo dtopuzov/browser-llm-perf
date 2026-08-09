@@ -9,6 +9,7 @@ import { performance } from 'node:perf_hooks';
 import { fileURLToPath } from 'node:url';
 import { installedChromeInfo, prepareVibiumRuntime, prepareVibiumSupport } from './vibium-runtime.mjs';
 import { classifyCommandCompletion, shellExitCodeFromEvent } from './command-metrics.mjs';
+import { recordCraftDriverChromeProvenance } from './chrome-driver-provenance.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const sharedCraftDriverCache = process.env.CRAFTDRIVER_CACHE_DIR
@@ -259,9 +260,82 @@ function claudeOAuthToken() {
   try {
     const credential = JSON.parse(result.stdout);
     const token = credential.claudeAiOauth?.accessToken;
-    return token ? { token, source: 'macOS keychain' } : null;
+    const expiresAt = credential.claudeAiOauth?.expiresAt;
+    return token ? { token, source: 'macOS keychain', expiresAt } : null;
   } catch {
     return null;
+  }
+}
+
+async function preflightClaudeAuth({ model, reasoning, batchDir }) {
+  const before = claudeOAuthToken();
+  const credentialSource = before?.source ?? (process.env.ANTHROPIC_API_KEY ? 'Anthropic API key' : null);
+  if (!credentialSource) {
+    throw new Error('Claude isolation requires CLAUDE_CODE_OAUTH_TOKEN, ANTHROPIC_API_KEY, or Claude Code credentials in the macOS keychain.');
+  }
+
+  // An isolated Claude HOME cannot refresh a macOS Keychain access token. Make
+  // one unmeasured request through the normal Claude profile first, then inject
+  // the freshly persisted access token into each measured isolated process.
+  const authRoot = await fs.mkdtemp('/tmp/llm-perf-claude-auth-');
+  const startedAt = new Date();
+  let result;
+  let response = null;
+  try {
+    const effort = reasoning === 'minimal' ? 'low' : reasoning;
+    const env = { ...process.env, CLAUDE_CODE_SKIP_PROMPT_HISTORY: '1' };
+    if (credentialSource === 'macOS keychain') {
+      delete env.CLAUDE_CODE_OAUTH_TOKEN;
+      delete env.ANTHROPIC_API_KEY;
+      delete env.CLAUDE_CONFIG_DIR;
+    }
+    result = await runProcess(agentDefinitions.claude.binary, [
+      '-p', 'Reply with exactly: AUTH_OK',
+      '--output-format', 'json',
+      '--model', model,
+      '--effort', effort,
+      '--no-session-persistence',
+      '--setting-sources', 'project',
+      '--strict-mcp-config', '--mcp-config', '{"mcpServers":{}}',
+      '--no-chrome',
+      '--permission-mode', 'dontAsk',
+    ], { cwd: authRoot, env, timeoutMs: 60000 });
+    try { response = JSON.parse(result.stdout); } catch { /* recorded as a failed preflight below */ }
+
+    const after = claudeOAuthToken();
+    const passed = result.code === 0
+      && !result.timedOut
+      && response?.is_error !== true
+      && response?.result?.trim() === 'AUTH_OK'
+      && (credentialSource !== 'macOS keychain' || after?.source === 'macOS keychain');
+    const artifact = {
+      status: passed ? 'passed' : 'failed',
+      measured: false,
+      purpose: 'Refresh and validate the credential before isolated measured trials.',
+      credentialSource,
+      startedAt: startedAt.toISOString(),
+      endedAt: new Date().toISOString(),
+      model,
+      reasoning: effort,
+      exitCode: result.code,
+      signal: result.signal,
+      timedOut: result.timedOut,
+      wallTimeMs: result.wallTimeMs,
+      responseIsError: response?.is_error ?? null,
+      responseMatched: response?.result?.trim() === 'AUTH_OK',
+      reportedCostUsd: response?.total_cost_usd ?? null,
+      usage: response?.usage ?? null,
+      keychainTokenExpiresAt: credentialSource === 'macOS keychain' && Number.isFinite(after?.expiresAt)
+        ? new Date(after.expiresAt).toISOString()
+        : null,
+    };
+    await fs.writeFile(path.join(batchDir, 'preflight', 'claude-auth.json'), `${JSON.stringify(artifact, null, 2)}\n`);
+    if (!passed) {
+      throw new Error(`Claude credential preflight failed before measured trials (exit ${result.code}, result ${JSON.stringify(response?.result ?? null)}).`);
+    }
+    return artifact;
+  } finally {
+    await fs.rm(authRoot, { recursive: true, force: true });
   }
 }
 
@@ -1141,13 +1215,24 @@ async function main() {
     await fs.access(path.join(driverDefinitions[driver].template, skillRoot, 'skills'));
   }
 
-  const fixtureServer = await startFixtureServer(task.fixture);
-  try {
-    const vibiumSupport = options.drivers.includes('vibium') ? await prepareVibiumSupport() : null;
   const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
   const batchId = safeId(options.batchId ?? `${task.id}-${timestamp}`);
   const batchDir = path.join(root, 'results', batchId);
   await fs.mkdir(path.join(batchDir, 'runs'), { recursive: true });
+  await fs.mkdir(path.join(batchDir, 'preflight'), { recursive: true });
+  const agentPreflight = options.agent === 'claude'
+    ? await preflightClaudeAuth({ model: options.model, reasoning: options.reasoning, batchDir })
+    : null;
+  const fixtureServer = await startFixtureServer(task.fixture);
+  try {
+    const vibiumSupport = options.drivers.includes('vibium') ? await prepareVibiumSupport() : null;
+  const systemChrome = installedChromeInfo();
+  const craftdriverBrowser = options.drivers.includes('craftdriver')
+    ? await recordCraftDriverChromeProvenance(
+        systemChrome,
+        path.join(batchDir, 'preflight', 'craftdriver-browser-driver.json'),
+      )
+    : null;
   const versions = {
     agent: agentVersion,
     codex: options.agent === 'codex' ? agentVersion : commandOutput(process.env.CODEX_BIN ?? 'codex', ['--version']),
@@ -1175,7 +1260,8 @@ async function main() {
       sourceCommit: 'b0f372ccd3ec895c4bf78d43ac9fb8eaba767a67',
       sha256: sha256(await fs.readFile(path.join(root, 'drivers', 'vibium', '.agents', 'skills', 'vibe-check', 'SKILL.md'))),
     },
-    chrome: installedChromeInfo(),
+    chrome: systemChrome,
+    craftdriverBrowser,
     vibiumBrowser: vibiumSupport ? {
       source: vibiumSupport.browserSource,
       chrome: vibiumSupport.chrome,
@@ -1204,6 +1290,7 @@ async function main() {
     fixtureBaseUrl: fixtureServer?.baseUrl ?? null,
     versions,
     preflight,
+    agentPreflight,
     schedule,
     runs: [],
   };

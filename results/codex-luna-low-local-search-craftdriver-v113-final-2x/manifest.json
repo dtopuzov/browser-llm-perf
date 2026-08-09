@@ -1,0 +1,513 @@
+{
+  "batchId": "codex-luna-low-local-search-craftdriver-v113-final-2x",
+  "createdAt": "2026-08-09T18:03:32.846Z",
+  "options": {
+    "agent": "codex",
+    "drivers": [
+      "playwright",
+      "craftdriver"
+    ],
+    "task": "local-search-telerik",
+    "runs": 2,
+    "model": "gpt-5.6-luna",
+    "reasoning": "low",
+    "seed": 42,
+    "timeoutMs": 600000,
+    "batchId": "codex-luna-low-local-search-craftdriver-v113-final-2x",
+    "yolo": true,
+    "headed": false
+  },
+  "task": {
+    "id": "local-search-telerik",
+    "description": "Deterministic local search flow used for primary token and latency comparisons.",
+    "fixture": "search",
+    "promptTemplate": "Use the {{DRIVER_SKILL}} skill and {{DRIVER_LABEL}} CLI for every browser interaction. Open a fresh {{BROWSER_MODE}} Chrome session, navigate to {{BASE_URL}}/, use the visible search form to search for Telerik, open the first result, and return its page heading and current URL as title and url. Do not navigate directly to a result URL. Immediately before closing, capture the final visible page as final-screenshot.png using {{DRIVER_LABEL}}. Close the browser session before answering.",
+    "expected": {
+      "title": "Telerik",
+      "urlPath": "/articles/telerik.html"
+    },
+    "outputSchema": "schemas/browser-result.schema.json"
+  },
+  "fixtureBaseUrl": "http://127.0.0.1:65059",
+  "versions": {
+    "agent": "codex-cli 0.146.0",
+    "codex": "codex-cli 0.146.0",
+    "playwright": "1.62.0",
+    "craftdriver": "1.13.0",
+    "craftdriverGitSha": "996e1f794ad7a74af67e002bd6c26e15e08b49c3",
+    "craftdriverGitDirty": false,
+    "craftdriverWorktreeDiffSha256": null,
+    "craftdriverSkillManifest": {
+      "schemaVersion": 1,
+      "craftdriverVersion": "1.13.0",
+      "files": {
+        "SKILL.md": "845f1b0cfdbd4744f2e1dd9f2ea3f7f81db4a1359b1e6ea90c77528d2f4234bf",
+        "agents/openai.yaml": "a0399821a95dd066d296aee28bee9b6ccf2ac48de4597b3f6a665f8b349118a6",
+        "cheatsheet.md": "aa82c8fd8ba05aab242bd3538db54ede44ec998b5d32d917c253470002093c30",
+        "cli.md": "b2ff7e9be3396677caa66da9dee17696cdeaf2ff2c381280e6102b51848995f9",
+        "patterns.md": "3b1feded6f5e7f79d044626cb8ed37eef80bae993568de05875fedef7f1628d0",
+        "workflow.md": "5e6dc3ad820dbfa66259dd338f7f4892525859e4ba25c714e6ab134cf772d038"
+      }
+    },
+    "vibium": "26.5.31",
+    "vibiumSkill": {
+      "name": "vibe-check",
+      "source": "https://github.com/VibiumDev/vibium/tree/b0f372ccd3ec895c4bf78d43ac9fb8eaba767a67/skills/vibe-check",
+      "sourceCommit": "b0f372ccd3ec895c4bf78d43ac9fb8eaba767a67",
+      "sha256": "127ef0f29722873157a62ec3c563963709573780f4a522469e27baf01f98653c"
+    },
+    "chrome": {
+      "executable": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+      "version": "Google Chrome 151.0.7922.108",
+      "numericVersion": "151.0.7922.108"
+    },
+    "craftdriverBrowser": {
+      "source": "CraftDriver resolved local browser/driver pair",
+      "chrome": {
+        "source": "installed Google Chrome",
+        "executable": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+        "version": "Google Chrome 151.0.7922.108",
+        "numericVersion": "151.0.7922.108"
+      },
+      "chromedriver": {
+        "source": "CraftDriver resolution",
+        "executable": "/Users/admin/.cache/craftdriver/chromedriver/151.0.7922.108/mac-x64/chromedriver",
+        "version": "151.0.7922.77"
+      },
+      "chromeMajor": 151,
+      "chromedriverMajor": 151,
+      "majorMatch": true
+    },
+    "vibiumBrowser": null
+  },
+  "preflight": {
+    "playwright": {
+      "passed": true,
+      "commands": [
+        {
+          "command": [
+            "/Users/admin/git/browser-llm-perf-provenance-fix/node_modules/.bin/playwright",
+            "cli",
+            "-s=llm-perf-preflight-84178",
+            "open",
+            "http://127.0.0.1:65059"
+          ],
+          "code": 0,
+          "signal": null,
+          "timedOut": false,
+          "spawnError": null,
+          "stdout": "### Browser `llm-perf-preflight-84178` opened with pid 84278.\n### Page\n- Page URL: http://127.0.0.1:65059/\n- Page Title: Knowledge Search\n- Console: 1 errors, 0 warnings\n### Snapshot\n- [Snapshot](.playwright/output/page-2026-08-09T18-03-22-216Z.yml)\n### Events\n- New console entries: .playwright/output/console-2026-08-09T18-03-21-880Z.log#L1\n",
+          "stderr": "",
+          "wallTimeMs": 4977
+        },
+        {
+          "command": [
+            "/Users/admin/git/browser-llm-perf-provenance-fix/node_modules/.bin/playwright",
+            "cli",
+            "-s=llm-perf-preflight-84178",
+            "snapshot"
+          ],
+          "code": 0,
+          "signal": null,
+          "timedOut": false,
+          "spawnError": null,
+          "stdout": "### Page\n- Page URL: http://127.0.0.1:65059/\n- Page Title: Knowledge Search\n- Console: 1 errors, 0 warnings\n### Snapshot\n```yaml\n- main [ref=e2]:\n  - heading \"Knowledge Search\" [level=1] [ref=e3]\n  - search [ref=e4]:\n    - generic [ref=e5]: Search the knowledge base\n    - searchbox \"Search the knowledge base\" [ref=e6]\n    - button \"Search\" [ref=e7]\n```\n",
+          "stderr": "",
+          "wallTimeMs": 1063
+        },
+        {
+          "command": [
+            "/Users/admin/git/browser-llm-perf-provenance-fix/node_modules/.bin/playwright",
+            "cli",
+            "-s=llm-perf-preflight-84178",
+            "close"
+          ],
+          "code": 0,
+          "signal": null,
+          "timedOut": false,
+          "spawnError": null,
+          "stdout": "Browser 'llm-perf-preflight-84178' closed\n\n",
+          "stderr": "",
+          "wallTimeMs": 1123
+        },
+        {
+          "command": [
+            "/Users/admin/git/browser-llm-perf-provenance-fix/node_modules/.bin/playwright",
+            "cli",
+            "close-all"
+          ],
+          "code": 0,
+          "signal": null,
+          "timedOut": false,
+          "spawnError": null,
+          "stdout": "",
+          "stderr": "",
+          "wallTimeMs": 991
+        },
+        {
+          "command": [
+            "/Users/admin/git/browser-llm-perf-provenance-fix/node_modules/.bin/playwright",
+            "cli",
+            "kill-all"
+          ],
+          "code": 0,
+          "signal": null,
+          "timedOut": false,
+          "spawnError": null,
+          "stdout": "No daemon processes found.\n",
+          "stderr": "",
+          "wallTimeMs": 1326
+        }
+      ]
+    },
+    "craftdriver": {
+      "passed": true,
+      "commands": [
+        {
+          "command": [
+            "/Users/admin/git/browser-llm-perf-provenance-fix/node_modules/.bin/craftdriver",
+            "go",
+            "http://127.0.0.1:65059",
+            "--browser",
+            "chrome",
+            "--headless",
+            "--session",
+            "llm-perf-preflight-84178"
+          ],
+          "code": 0,
+          "signal": null,
+          "timedOut": false,
+          "spawnError": null,
+          "stdout": "{\"ok\":true,\"result\":{\"title\":\"Knowledge Search\",\"url\":\"http://127.0.0.1:65059/\"}}\n",
+          "stderr": "",
+          "wallTimeMs": 3942
+        },
+        {
+          "command": [
+            "/Users/admin/git/browser-llm-perf-provenance-fix/node_modules/.bin/craftdriver",
+            "snapshot",
+            "--session",
+            "llm-perf-preflight-84178"
+          ],
+          "code": 0,
+          "signal": null,
+          "timedOut": false,
+          "spawnError": null,
+          "stdout": "{\"ok\":true,\"result\":{\"url\":\"http://127.0.0.1:65059/\",\"title\":\"Knowledge Search\",\"lines\":[\"e1: main (container)\",\"  e2: heading \\\"Knowledge Search\\\" [level=1]\",\"  e3: search (container) #search-form\",\"    e4: label \\\"Search the knowledge base\\\"\",\"    e5: searchbox \\\"Search the knowledge base\\\" #query\",\"    e6: button \\\"Search\\\"\"],\"documentId\":\"d1-8p154x8u\",\"revision\":1}}\n",
+          "stderr": "",
+          "wallTimeMs": 467
+        },
+        {
+          "command": [
+            "/Users/admin/git/browser-llm-perf-provenance-fix/node_modules/.bin/craftdriver",
+            "session",
+            "close",
+            "llm-perf-preflight-84178"
+          ],
+          "code": 0,
+          "signal": null,
+          "timedOut": false,
+          "spawnError": null,
+          "stdout": "{\"ok\":true,\"result\":{\"closed\":true,\"name\":\"llm-perf-preflight-84178\"}}\n",
+          "stderr": "",
+          "wallTimeMs": 482
+        },
+        {
+          "command": [
+            "/Users/admin/git/browser-llm-perf-provenance-fix/node_modules/.bin/craftdriver",
+            "daemon",
+            "stop"
+          ],
+          "code": 0,
+          "signal": null,
+          "timedOut": false,
+          "spawnError": null,
+          "stdout": "daemon stopped\n",
+          "stderr": "",
+          "wallTimeMs": 423
+        }
+      ]
+    }
+  },
+  "agentPreflight": null,
+  "schedule": [
+    {
+      "trial": 1,
+      "driver": "playwright"
+    },
+    {
+      "trial": 1,
+      "driver": "craftdriver"
+    },
+    {
+      "trial": 2,
+      "driver": "craftdriver"
+    },
+    {
+      "trial": 2,
+      "driver": "playwright"
+    }
+  ],
+  "runs": [
+    {
+      "runId": "001-codex-playwright",
+      "agent": "codex",
+      "driver": "playwright",
+      "task": "local-search-telerik",
+      "successful": true,
+      "infrastructure": {
+        "exitCode": 0,
+        "timedOut": false,
+        "answerParseError": null,
+        "screenshotCaptured": true
+      },
+      "correctness": {
+        "passed": true,
+        "checks": {
+          "title": true,
+          "urlPath": true
+        }
+      },
+      "answer": {
+        "title": "Telerik",
+        "url": "http://127.0.0.1:65059/articles/telerik.html"
+      },
+      "timing": {
+        "wallTimeMs": 76208,
+        "firstBrowserCommandMs": 14889,
+        "browserCommandDurationMs": 24611,
+        "agentApiDurationMs": null,
+        "agentReportedSessionDurationMs": null
+      },
+      "usage": {
+        "inputTokens": 182169,
+        "cachedInputTokens": 142848,
+        "cacheCreationInputTokens": 0,
+        "outputTokens": 1320,
+        "reasoningOutputTokens": 133,
+        "aiCreditNanoUnits": null,
+        "aiCredits": null,
+        "premiumRequests": null,
+        "costUsd": null,
+        "modelUsage": null,
+        "uncachedInputTokens": 39321,
+        "totalTokens": 183489
+      },
+      "commands": {
+        "agentToolTurns": 11,
+        "browserToolTurns": 10,
+        "browserInvocations": 10,
+        "failedToolTurns": 0,
+        "failedBrowserInvocations": 0,
+        "total": 11,
+        "browser": 10,
+        "failed": 0,
+        "browserDurationMs": 24611,
+        "browserOutputBytes": 2563,
+        "allOutputBytes": 9713,
+        "firstBrowserCommandMs": 14889,
+        "agentApiDurationMs": null,
+        "agentReportedSessionDurationMs": null
+      },
+      "bytes": {
+        "agentEvents": 15428,
+        "agentStderr": 39
+      }
+    },
+    {
+      "runId": "001-codex-craftdriver",
+      "agent": "codex",
+      "driver": "craftdriver",
+      "task": "local-search-telerik",
+      "successful": true,
+      "infrastructure": {
+        "exitCode": 0,
+        "timedOut": false,
+        "answerParseError": null,
+        "screenshotCaptured": true
+      },
+      "correctness": {
+        "passed": true,
+        "checks": {
+          "title": true,
+          "urlPath": true
+        }
+      },
+      "answer": {
+        "title": "Telerik",
+        "url": "http://127.0.0.1:65059/articles/telerik.html"
+      },
+      "timing": {
+        "wallTimeMs": 42153,
+        "firstBrowserCommandMs": 17561,
+        "browserCommandDurationMs": 13681,
+        "agentApiDurationMs": null,
+        "agentReportedSessionDurationMs": null
+      },
+      "usage": {
+        "inputTokens": 70259,
+        "cachedInputTokens": 39168,
+        "cacheCreationInputTokens": 0,
+        "outputTokens": 647,
+        "reasoningOutputTokens": 91,
+        "aiCreditNanoUnits": null,
+        "aiCredits": null,
+        "premiumRequests": null,
+        "costUsd": null,
+        "modelUsage": null,
+        "uncachedInputTokens": 31091,
+        "totalTokens": 70906
+      },
+      "commands": {
+        "agentToolTurns": 4,
+        "browserToolTurns": 3,
+        "browserInvocations": 6,
+        "failedToolTurns": 0,
+        "failedBrowserInvocations": 0,
+        "total": 4,
+        "browser": 6,
+        "failed": 0,
+        "browserDurationMs": 13681,
+        "browserOutputBytes": 1603,
+        "allOutputBytes": 7756,
+        "firstBrowserCommandMs": 17561,
+        "agentApiDurationMs": null,
+        "agentReportedSessionDurationMs": null
+      },
+      "bytes": {
+        "agentEvents": 10870,
+        "agentStderr": 39
+      }
+    },
+    {
+      "runId": "002-codex-craftdriver",
+      "agent": "codex",
+      "driver": "craftdriver",
+      "task": "local-search-telerik",
+      "successful": true,
+      "infrastructure": {
+        "exitCode": 0,
+        "timedOut": false,
+        "answerParseError": null,
+        "screenshotCaptured": true
+      },
+      "correctness": {
+        "passed": true,
+        "checks": {
+          "title": true,
+          "urlPath": true
+        }
+      },
+      "answer": {
+        "title": "Telerik",
+        "url": "http://127.0.0.1:65059/articles/telerik.html"
+      },
+      "timing": {
+        "wallTimeMs": 40861,
+        "firstBrowserCommandMs": 15097,
+        "browserCommandDurationMs": 13189,
+        "agentApiDurationMs": null,
+        "agentReportedSessionDurationMs": null
+      },
+      "usage": {
+        "inputTokens": 70804,
+        "cachedInputTokens": 25088,
+        "cacheCreationInputTokens": 0,
+        "outputTokens": 797,
+        "reasoningOutputTokens": 159,
+        "aiCreditNanoUnits": null,
+        "aiCredits": null,
+        "premiumRequests": null,
+        "costUsd": null,
+        "modelUsage": null,
+        "uncachedInputTokens": 45716,
+        "totalTokens": 71601
+      },
+      "commands": {
+        "agentToolTurns": 4,
+        "browserToolTurns": 3,
+        "browserInvocations": 6,
+        "failedToolTurns": 0,
+        "failedBrowserInvocations": 0,
+        "total": 4,
+        "browser": 6,
+        "failed": 0,
+        "browserDurationMs": 13189,
+        "browserOutputBytes": 1603,
+        "allOutputBytes": 7756,
+        "firstBrowserCommandMs": 15097,
+        "agentApiDurationMs": null,
+        "agentReportedSessionDurationMs": null
+      },
+      "bytes": {
+        "agentEvents": 11269,
+        "agentStderr": 39
+      }
+    },
+    {
+      "runId": "002-codex-playwright",
+      "agent": "codex",
+      "driver": "playwright",
+      "task": "local-search-telerik",
+      "successful": true,
+      "infrastructure": {
+        "exitCode": 0,
+        "timedOut": false,
+        "answerParseError": null,
+        "screenshotCaptured": true
+      },
+      "correctness": {
+        "passed": true,
+        "checks": {
+          "title": true,
+          "urlPath": true
+        }
+      },
+      "answer": {
+        "title": "Telerik",
+        "url": "http://127.0.0.1:65059/articles/telerik.html"
+      },
+      "timing": {
+        "wallTimeMs": 80587,
+        "firstBrowserCommandMs": 13644,
+        "browserCommandDurationMs": 24560,
+        "agentApiDurationMs": null,
+        "agentReportedSessionDurationMs": null
+      },
+      "usage": {
+        "inputTokens": 184268,
+        "cachedInputTokens": 141824,
+        "cacheCreationInputTokens": 0,
+        "outputTokens": 1425,
+        "reasoningOutputTokens": 203,
+        "aiCreditNanoUnits": null,
+        "aiCredits": null,
+        "premiumRequests": null,
+        "costUsd": null,
+        "modelUsage": null,
+        "uncachedInputTokens": 42444,
+        "totalTokens": 185693
+      },
+      "commands": {
+        "agentToolTurns": 11,
+        "browserToolTurns": 10,
+        "browserInvocations": 10,
+        "failedToolTurns": 1,
+        "failedBrowserInvocations": 1,
+        "total": 11,
+        "browser": 10,
+        "failed": 1,
+        "browserDurationMs": 24560,
+        "browserOutputBytes": 3359,
+        "allOutputBytes": 10509,
+        "firstBrowserCommandMs": 13644,
+        "agentApiDurationMs": null,
+        "agentReportedSessionDurationMs": null
+      },
+      "bytes": {
+        "agentEvents": 16529,
+        "agentStderr": 360
+      }
+    }
+  ]
+}

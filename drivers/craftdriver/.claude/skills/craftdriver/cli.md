@@ -42,10 +42,21 @@ since the last observation). `documentChange` is `same`, `changed`, or
 `unknown`; unknown means no preceding observed document exists. The default
 stays compact and does not snapshot after every action.
 
+Every observed result carries `errors` and `logCursor` alongside the delta:
+`errors` counts the errors the page logged since the previous observation
+(uncaught exceptions and `console.error`), and `logCursor` is the `--since`
+value that reads exactly those entries. Treat a non-zero count as a reason to
+run `logs --kind error --since <logCursor>` before reporting the action as
+successful — `(no a11y changes)` alone does not mean the page was happy.
+Any qualifier beside that count — `logsDropped`, `logsDroppedExact`,
+`logsSettled` — means it is a lower bound rather than an answer, and
+`expect no-errors` calls such a window undecidable rather than clean.
+
 The daemon uses a Unix socket and is not available on Windows. On Windows, or in
 a sandbox that cannot keep a background process, use the configured MCP server
 for a persistent agent session, or send the whole flow in one `--ephemeral`
-script.
+script — which takes the same script and the same failure rules as `run` below,
+including `--continue-on-error`.
 
 ## Current commands
 
@@ -73,14 +84,23 @@ text [selector] [--limit N]
 attr <selector> <name>
 value <selector>
 is visible|enabled|checked <selector>
+expect visible <selector>
+expect text <selector> '<expected>' | expect text <selector> --contains '<sub>'
+expect url '<expected>' | expect url --contains '<sub>'
+expect no-errors [--since N]
 wait <selector> [--state visible|hidden|attached|detached] [--timeout ms]
 wait load [--state load|domcontentloaded|networkidle]
 pages
 page list | open [url] | select <index|id> | close <index|id>
 snapshot
 locators <selector>
+a11y [selector] [--min-impact minor|moderate|serious|critical]
+     [--rules id,id] [--disable-rules id,id] [--limit N] [--nodes N]
+     [--check]
 screenshot [-o out.png] [--full-page] [--selector selector]
 eval <javascript> [--observe=page|delta]
+run < script.txt   (one command per line; see "Batching known commands")
+                   [--continue-on-error]   also valid on --ephemeral
 back | forward | reload | status | quit
 daemon start | status | stop
 session list | close [name]
@@ -91,6 +111,85 @@ mock add <pattern> [--status N] [--body S] | block <pattern>
      | list | remove <id> | clear
 trace start [name] [--no-screenshots] | stop [--zip] | status
 ```
+
+## Batching known commands
+
+`run` sends a whole script of already-known commands to the live session in one
+process, one round trip. Measured on a five-step flow: 1.85 s as five
+invocations, 0.54 s as one batch, with 237 ms of that actual browser work.
+
+```bash
+npx craftdriver run --session shopper <<'EOF'
+fill '#nickname' mitko
+check #newsletter
+select #plan pro
+click #save --observe=delta
+EOF
+```
+
+Same script syntax as `--ephemeral`, against the daemon session rather than a
+throwaway browser. The batch is one session queue slot, so nothing interleaves.
+It stops at the first failed step and reports `failedStep` and `skipped`; pass
+`--continue-on-error` only for genuinely independent probes. Every step returns
+its own `ok`, `durationMs` and result. It returns one observation, not one per
+step: put `--observe` on the last step — it is refused anywhere else — and
+`--observe=delta` there accumulates what the earlier steps changed. A failed
+step keeps its `recoverySnapshot`. Nothing is ever retried, healed, or
+substituted. A step that ran but answered no (`exists` matching nothing, a
+failed `a11y --check`) counts as a failed step, exactly as it is exit 1 run
+singly — `--continue-on-error` is how you say it was an independent probe.
+
+Batch only what is already known. Return and look between steps whenever the
+next selector comes from the previous step's delta, an intermediate result
+decides whether to continue, a fresh snapshot or ref is needed, or the flow
+crosses a navigation or wizard step whose next screen you cannot predict — a
+login that lands somewhere known is a good batch, not a reason to break one.
+
+Exit status is 0 when every step passed, otherwise the status the first failing
+step would have produced alone. A script that fails to parse exits 2 before
+anything is started. `run` needs the daemon, so on Windows use the MCP
+`browser_batch` tool instead.
+
+## Check the outcome, not just the steps
+
+`find`, `text` and `is` are reads: they answer and exit 0 whatever the answer
+is. `exists` answers too, but reports its answer as the exit status (1 when
+nothing matched), so inside a script it stops the run like any other failure.
+`expect` returns a verdict — it auto-waits and then *fails*, exit 1, with the
+selector, the expected value and what was actually there.
+
+```bash
+npx craftdriver expect visible 'testid=welcome'
+npx craftdriver expect text 'testid=welcome' --contains 'Welcome'
+npx craftdriver expect url --contains '/dashboard'
+npx craftdriver expect no-errors
+```
+
+Give the expected value as an argument for an exact match or `--contains` for a
+substring — one or the other. Failures are diagnosed: "nothing matched it"
+means fix the selector, "it is hidden" means open the modal, accordion or tab
+containing it first.
+
+**End a batch with an `expect` step whenever the flow has an outcome worth
+checking.** Without one a batch reports that every step executed, never that
+the application did the right thing — and a failed assertion stops the steps
+after it, so nothing runs on against a page that is already wrong.
+
+```bash
+npx craftdriver run --session shopper <<'EOF'
+fill '#nickname' mitko
+click '#save'
+expect text '#log' --contains saved --observe=delta
+EOF
+```
+
+`expect no-errors` fails if the page logged an error and quotes the first few,
+so it pairs with the `errors` counter in an observation: the counter says
+whether to look, the assertion decides the run. It counts from the start of the
+session — narrow it with `--since N` using a `logCursor` you already have — and
+it reads what has been captured rather than waiting, so use `logs wait` when
+you need to wait for a specific message. Where the window cannot support a green
+verdict it answers `STATE_INVALID` rather than passing, as above.
 
 ## Named sessions
 
@@ -266,6 +365,34 @@ Each candidate is reported `unique`, `ambiguous`, or `missing`, ordered by
 durability (role + name, label, test id, unique text, minimal CSS). Use one
 reported `unique`. If none is, add a `data-testid` to the application rather
 than committing a positional selector.
+
+## Accessibility audits
+
+Reach for this only when the task is about accessibility, WCAG, or screen-reader
+behaviour. It is not part of the ordinary exploration loop.
+
+`a11y [selector]` runs axe-core over the page, or one region. Every violation
+node carries a `ref=eN`, so a finding is directly actionable — axe's own
+`target` is a CSS path describing a position, not a handle.
+
+```bash
+npx craftdriver a11y                      # violation → ref=e4
+npx craftdriver locators ref=e4           # ref → durable selector for the fix
+npx craftdriver a11y --check              # re-run; exits 1 until it is clean
+```
+
+An element an earlier snapshot already reffed keeps that same ref. `a11y`
+mirrors `browser.a11y.audit()` and exits `0` after reporting; `a11y --check`
+mirrors `browser.a11y.check()` and exits `1` when findings exist. Both default
+to all (`minor+`) violations, and `--min-impact` is their one shared threshold.
+Check mode uses the whole audit, not the truncated view. Output is bounded by
+`--limit` (violations) and `--nodes` (per violation) and sets `truncated` when
+anything was dropped.
+
+Refs from an audit are exploration state exactly like snapshot refs — convert
+with `locators` before writing anything into a test. `locators` cannot yet
+describe an element inside a shadow root, and violations inside iframes are
+reported without a ref.
 
 ## Output and failures
 

@@ -6,6 +6,8 @@ import { performance } from 'node:perf_hooks';
 import { fileURLToPath } from 'node:url';
 import os from 'node:os';
 import { installedChromeInfo, prepareVibiumRuntime, prepareVibiumSupport } from './vibium-runtime.mjs';
+import { recordCraftDriverChromeProvenance } from './chrome-driver-provenance.mjs';
+import { craftdriverRefFromSnapshot } from './craftdriver-output.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const binDir = path.join(root, 'node_modules', '.bin');
@@ -124,17 +126,7 @@ function refFromSnapshot(driver, stdout, role, name) {
     }
     return null;
   }
-  for (const line of stdout.trim().split(/\r?\n/).reverse()) {
-    try {
-      const payload = JSON.parse(line);
-      const snapshotLines = payload?.result?.lines ?? [];
-      const match = snapshotLines.find(value => value.includes(`: ${role} "${name}`))?.match(/^(e\d+):/);
-      if (match) return match[1];
-    } catch {
-      // Keep scanning JSONL.
-    }
-  }
-  return null;
+  return craftdriverRefFromSnapshot(stdout, role, name);
 }
 
 function vibiumResult(stdout) {
@@ -318,14 +310,20 @@ function rotatedDriverOrder(selectedDrivers, trial, seed) {
 
 async function main() {
   const options = parseArgs(process.argv.slice(2));
-  const server = await startServer();
-  const systemChrome = installedChromeInfo();
-  const vibiumSupport = await prepareVibiumSupport();
   const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
   const batchId = options.batchId ?? `cli-local-search-${timestamp}`;
   const batchDir = path.join(root, 'results', batchId);
   await fs.mkdir(path.join(batchDir, 'runs'), { recursive: true });
   await fs.mkdir(path.join(batchDir, 'preflight'), { recursive: true });
+  const systemChrome = installedChromeInfo();
+  const craftdriverBrowser = options.drivers.includes('craftdriver')
+    ? await recordCraftDriverChromeProvenance(
+        systemChrome,
+        path.join(batchDir, 'preflight', 'craftdriver-browser-driver.json'),
+      )
+    : null;
+  const vibiumSupport = await prepareVibiumSupport();
+  const server = await startServer();
   const manifest = {
     type: 'direct-cli',
     batchId,
@@ -335,7 +333,7 @@ async function main() {
     browser: systemChrome.version,
     browsers: {
       playwright: { source: 'installed Google Chrome', version: systemChrome.version, executable: systemChrome.executable },
-      craftdriver: { source: 'installed Google Chrome', version: systemChrome.version, executable: systemChrome.executable },
+      craftdriver: craftdriverBrowser,
       vibium: { source: vibiumSupport.browserSource, version: vibiumSupport.chrome.version, executable: vibiumSupport.chrome.executable },
     },
     versions: {
@@ -354,9 +352,9 @@ async function main() {
         relativePath: path.join('preflight', `${driver}-final-screenshot.png`),
       }, vibiumSupport);
       manifest.preflight[driver] = warmup;
+      await fs.writeFile(path.join(batchDir, 'manifest.json'), `${JSON.stringify(manifest, null, 2)}\n`);
       if (!warmup.passed) throw new Error(`${driver} preflight failed: ${warmup.error ?? JSON.stringify(warmup.answer)}`);
     }
-    await fs.writeFile(path.join(batchDir, 'manifest.json'), `${JSON.stringify(manifest, null, 2)}\n`);
     for (let index = 1; index <= options.runs; index += 1) {
       const order = rotatedDriverOrder(options.drivers, index, options.seed);
       for (const driver of order) {
@@ -383,6 +381,7 @@ async function main() {
     `# Direct CLI report: ${batchId}`,
     '',
     `Installed Chrome (Playwright/CraftDriver): ${manifest.browser ?? 'unknown'}`,
+    `CraftDriver ChromeDriver: ${manifest.browsers.craftdriver?.chromedriver?.version ?? 'not selected'} (${manifest.browsers.craftdriver?.chromedriver?.executable ?? 'no executable'})`,
     `Vibium-managed Chrome: ${manifest.browsers.vibium.version ?? 'unknown'}`,
     '',
     '| Driver | Correct | Wall median | Measured commands | stdout median | stderr median |',
